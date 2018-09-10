@@ -1,24 +1,25 @@
-# README
+# Shopping List
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# ⚠️ TBA! ⚠️
 
-Things you may want to cover:
+### To run locally
 
-* Ruby version
+Dependencies:
+* Ruby 2.5.1
+* Rails 5.2.1
+* MySQL
+   * Install MySQL 
+   * Install the MySQL gem: `gem install mysql2`
+   * Export your root MwSQL password as an env variable (for use by [the DB config file](./config/database.yml)): `export SHOPPING_LIST_DATABASE_PASSWORD="my_password"`
 
-* System dependencies
+```bash
+git clone git@github.com:boost/shopping-list.git
+cd shopping-list
+bundle install
+rake db:create
+rails server
+```
 
-* Configuration
+### Resources
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [How to use MySQL With Your Ruby on Rails Application](https://www.1and1.com/cloud-community/learn/application/ruby-on-rails/how-to-use-mysql-with-your-ruby-on-rails-application/)
