@@ -20,6 +20,7 @@
       <% @list.items.each do |item| %>
         <li>
           <%= item.name %>, <%= item.quantity %>
+          <%= link_to 'Delete', [item.list, item], method: :delete %>
         </li>
       <% end %>
     </ul>

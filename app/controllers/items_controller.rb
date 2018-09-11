@@ -8,6 +8,13 @@ class ItemsController < ApplicationController
     redirect_to list_path(@list)
   end
 
+  def destroy
+    @list = List.find(params[:list_id])
+    @item = @list.items.find(params[:id])
+    @item.destroy
+    redirect_to list_path(@list)
+  end
+
   private
 
   def comment_params
