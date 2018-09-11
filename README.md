@@ -1,6 +1,8 @@
 # Shopping List
 
-# ⚠️ TBA! ⚠️
+# ⚠️ Under construction ⚠️
+
+Every week, Boost orders groceries from Countdown(?). It would be useful to have an app where we can record what is needed (items + quantity) ahead of time, as well as suggesting items for purchase.
 
 ### To run locally
 
@@ -20,6 +22,8 @@ rake db:create
 rails db:migrate  
 rails server
 ```
+
+Then go to `localhost:3000` in your browser 😀
 
 ### Resources
 
