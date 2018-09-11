@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resources :items
   end
 
-  root 'welcome#index'
+  root 'lists#index'
 end
