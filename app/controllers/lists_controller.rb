@@ -9,7 +9,6 @@ class ListsController < ApplicationController
 
   def new
     # TODO: revisit this
-
     create
     # @list = List.new
   end

@@ -2,19 +2,19 @@
 
 <div id="lists">
   <% if @lists.any? %>
-  <h2 class="heading">Existing lists</h2>
-  <ul>
-    <% @lists.reverse_each do |list| %>
-    <li>
-      <%= link_to format_list_name(list), list_path(list) %>
-      <%= link_to list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
-        <i class="fi-trash"></i>
+    <h2 class="heading">Existing lists</h2>
+    <ul>
+      <% @lists.reverse_each do |list| %>
+      <li>
+        <%= link_to format_list_name(list), list_path(list) %>
+        <%= link_to list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+          <i class="fi-trash"></i>
+        <% end %>
+      </li>
       <% end %>
-    </li>
-    <% end %>
-  </ul>
+    </ul>
   <% else %>
-  <p>No lists have yet been created.</p>
+    <p>No lists have yet been created.</p>
   <% end %>
 </div>
 

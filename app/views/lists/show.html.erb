@@ -1,5 +1,41 @@
 <h2 class="heading"><%= format_list_name(@list) %></h2>
 
-<p>Items tba ....</p>
+<% if flash.notice %>
+  <div id="errors">
+    <h3>
+      <%= pluralize(flash.notice.count, "error") %> prohibited
+      this item from being saved:
+    </h3>
+    <ul>
+      <% flash.notice.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div id="list">
+  <% if @list.items.any? %>
+    <ul>
+      <% @list.items.each do |item| %>
+        <li>
+          <%= item.name %>, <%= item.quantity %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No items have yet been added.</p>
+  <% end %>
+</div>
+
+<%= form_with(model: [ @list, @list.items.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+    <%= form.submit "Add item" %>
+  </p>
+<% end %>
 
 <%= link_to 'Home', lists_path %>

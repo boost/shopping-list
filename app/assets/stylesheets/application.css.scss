@@ -56,3 +56,13 @@ h1 {
   font-family: 'Merriweather', serif;
   font-weight: bold;
 }
+
+ul {
+  list-style: none;
+  padding-inline-start: 0; // Overriding user agent stylesheet
+}
+
+li {
+  margin: 0 auto;
+  max-width: 60%;
+}
