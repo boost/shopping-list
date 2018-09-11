@@ -8,9 +8,7 @@ class ListsController < ApplicationController
   end
 
   def new
-    # TODO: revisit this
-    create
-    # @list = List.new
+    redirect_to lists_path
   end
 
   def edit
