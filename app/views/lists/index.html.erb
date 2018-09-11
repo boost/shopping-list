@@ -1,14 +1,12 @@
-<h1 class="heading">Let's go shopping!</h1>
-
 <div id="lists">
   <% if @lists.any? %>
-    <h2 class="heading">Existing lists</h2>
+    <h2>Your lists</h2>
     <ul>
       <% @lists.reverse_each do |list| %>
-      <li>
-        <%= link_to format_list_name(list), list_path(list) %>
-        <%= link_to list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
-          <i class="fi-trash"></i>
+      <li class="grid-x">
+        <%= link_to format_list_name(list), list_path(list), class: "cell" %>
+        <%= link_to list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "cell" do %>
+          <i class="icon fi-trash"></i>
         <% end %>
       </li>
       <% end %>
@@ -18,4 +16,7 @@
   <% end %>
 </div>
 
-<%= link_to 'Create a new list', lists_path, method: :post %>
+<%= link_to lists_path, method: :post, class: "nav-link" do %>
+  Create new list
+  <i class="icon fi-plus"></i>
+<% end %>

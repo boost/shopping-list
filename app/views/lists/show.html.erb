@@ -1,13 +1,14 @@
-<h2 class="heading"><%= format_list_name(@list) %></h2>
+<h2><%= format_list_name(@list) %></h2>
 
 <div id="list">
   <% if @list.items.any? %>
     <ul>
       <% @list.items.each do |item| %>
         <li>
-          <%= item.name %>, <%= item.quantity %>
+          <span><%= item.name %></span>
+          <span><%= item.quantity %></span>
           <%= link_to [item.list, item], method: :delete do %>
-            <i class="fi-trash"></i>
+            <i class="icon fi-trash"></i>
           <% end %>
         </li>
       <% end %>
@@ -40,4 +41,7 @@
   </p>
 <% end %>
 
-<%= link_to 'Home', lists_path %>
+<%= link_to lists_path, class: "nav-link" do %>
+  Home
+  <i class="icon fi-home"></i>
+<% end %>

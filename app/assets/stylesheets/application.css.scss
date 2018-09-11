@@ -14,55 +14,79 @@
  *= require_self
  */
 @import 'foundation-icons';
-$pale-green: #f0f9ed; // $dark-purple: #391151;
+$boost-red: #B72039;
 
 body {
-  /* Controls size of dot */
-  background-image: radial-gradient($pale-green 25%, white 0%);
-  /* Controls Spacing, First value will scale width, second, height between dots */
-  background-size: 4% 10%;
-  color: black;
-  font-family: 'Muli', sans-serif;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
   margin: 0; // Overriding default
 }
 
 #container {
-  background-color: $pale-green;
-  margin: 2.4em auto 0;
-  padding: 0.5em 0 2em;
+  background-color: $boost-red;
+  margin: 0 auto;
+  padding: 0 0 1.5em;
   text-align: center;
-}
-@media screen and (max-width: 39.9375em) {
-  #container {
+  @media screen and (max-width: 39.9375em) {
     width: 100%;
   }
-}
-@media screen and (min-width: 40em) and (max-width: 63.9375em) {
-  #container {
-    width: 70%;
+  @media screen and (min-width: 40em) and (max-width: 63.9375em) {
+    width: 60%;
   }
-}
-@media screen and (min-width: 64em) {
-  #container {
-    width: 50%;
+  @media screen and (min-width: 64em) {
+    width: 40%;
   }
 }
 
-h1 {
-  font-style: italic;
+#boost-logo {
+  margin-top: 1.5em;
 }
 
 .heading {
-  font-family: 'Merriweather', serif;
-  font-weight: bold;
+  font-family: 'Oleo Script', serif;
+  font-size: 3em;
+  font-style: italic;
+  font-weight: lighter;
+  margin: 0.2em;
 }
 
 ul {
   list-style: none;
-  padding-inline-start: 0; // Overriding user agent stylesheet
+  padding-inline-start: 0; // Overriding default
 }
 
 li {
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  margin: 0.5em auto;
   max-width: 60%;
+  padding: 0.5em 1.5em;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:visited {
+    color: white;
+  }
+
+  .icon {
+    color: black;
+  }
+}
+
+.icon {
+  padding: 0.5em 0.2em 0.5em 0.5em;
+}
+
+.nav-link {
+  background: white;
+  border-radius: 7px;
+  color: black;
+  display: inline-block;
+  padding: 0.75em;
+  text-decoration: none;
 }

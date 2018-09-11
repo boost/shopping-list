@@ -7,11 +7,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Merriweather|Muli', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Oleo+Script|Montserrat', media: 'all', 'data-turbolinks-track' => true %>
   </head>
 
   <body>
     <div id="container">
+      <%= render "layouts/header" %>
       <%= yield %>
     </div>
   </body>
