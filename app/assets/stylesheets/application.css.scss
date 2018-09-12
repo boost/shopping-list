@@ -30,11 +30,8 @@ body {
   @media screen and (max-width: 39.9375em) {
     width: 100%;
   }
-  @media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  @media screen and (min-width: 40em) {
     width: 60%;
-  }
-  @media screen and (min-width: 64em) {
-    width: 40%;
   }
 }
 
@@ -79,7 +76,7 @@ li {
 }
 
 .icon {
-  padding: 0.5em 0.2em 0.5em 0.5em;
+  padding: 0.5em;
 }
 
 .nav-link {

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :lists do
     resources :items do
       put :toggle_checked
+      put :increment_quantity
+      put :decrement_quantity
     end
   end
 

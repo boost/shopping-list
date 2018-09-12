@@ -23,6 +23,27 @@ class ItemsController < ApplicationController
     redirect_to list_path(@item.list_id)
   end
 
+  def decrement_quantity
+    @item = Item.find(params[:item_id])
+
+    if @item.quantity <= 1
+      @item.destroy
+    else
+      @item.quantity -= 1
+      @item.save
+    end
+
+    redirect_to list_path(@item.list_id)
+  end
+
+  def increment_quantity
+    @item = Item.find(params[:item_id])
+    @item.quantity += 1
+    @item.save
+
+    redirect_to list_path(@item.list_id)
+  end
+
   private
 
   def item_params
