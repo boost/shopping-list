@@ -5,7 +5,8 @@
     <ul>
       <% @list.items.each do |item| %>
         <li>
-          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: item_class(item) do %>
+          <span><%= category_name(item) %></span>
+          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: list_item_class(item) do %>
             <span><%= item.name %></span>
             <span><%= item.quantity %></span>
           <% end %>
@@ -39,6 +40,7 @@
     <%= form.text_field :name, placeholder: :name %>
     <%= form.label :quantity %>
     <%= form.number_field :quantity, value: 1 %>
+    <%= form.select(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] })) %>
     <%= form.submit "Add item" %>
   </p>
 <% end %>
