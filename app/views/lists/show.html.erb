@@ -4,16 +4,24 @@
   <% if @list.items.any? %>
     <ul>
       <% @list.items.each do |item| %>
-        <li>
-          <span><%= item.category ? item.category.name : "unknown" %></span>
-          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: item_class(item) do %>
-            <span><%= item.name %></span>
-            <span><%= item.quantity %></span>
+        <%= content_tag :li, class: item_class(item) do %>
+          <div><%= item.category ? item.category.name : "unknown" %></div>
+          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put do %>
+            <div class="item-name"><%= item.name %></div>
           <% end %>
+          <div class="item-quantity">
+            <%= link_to list_item_decrement_quantity_path(@list.id, item.id), method: :put, class: "quantity-button" do %>
+              <i class="icon fi-minus"></i>
+            <% end %>
+            <div class="quantity-text"><%= item.quantity %></div>
+            <%= link_to list_item_increment_quantity_path(@list.id, item.id), method: :put, class: "quantity-button" do %>
+              <i class="icon fi-plus"></i>
+            <% end %>
+          </div>
           <%= link_to [item.list, item], method: :delete do %>
             <i class="icon fi-trash"></i>
           <% end %>
-        </li>
+        <% end %>
       <% end %>
     </ul>
   <% else %>
