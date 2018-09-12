@@ -4,8 +4,8 @@
   <% if @list.items.any? %>
     <ul>
       <% @list.items.each do |item| %>
-        <%= content_tag :li, class: item_class(item) do %>
-          <div><%= item.category ? item.category.name : "unknown" %></div>
+        <%= content_tag :li, class: list_item_class(item) do %>
+          <div><%= category_name(item) %></div>
           <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put do %>
             <div class="item-name"><%= item.name %></div>
           <% end %>
