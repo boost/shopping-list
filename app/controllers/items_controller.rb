@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   def create
     @list = List.find(params[:list_id])
-    @item = @list.items.create(comment_params)
+    @item = @list.items.create(item_params)
 
     flash[:notice] = @item.errors.full_messages if @item.errors.count > 0
 
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
   private
 
-  def comment_params
-    params.require(:item).permit(:name, :quantity)
+  def item_params
+    params.require(:item).permit(:name, :quantity, :category_id)
   end
 end

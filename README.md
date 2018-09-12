@@ -19,7 +19,8 @@ git clone git@github.com:boost/shopping-list.git
 cd shopping-list
 bundle install
 rake db:create
-rails db:migrate  
+rails db:migrate
+rails db:seed
 rails server
 ```
 
