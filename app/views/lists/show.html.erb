@@ -5,8 +5,8 @@
     <ul>
       <% @list.items.each do |item| %>
         <li>
-          <span><%= item.category ? item.category.name : "unknown" %></span>
-          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: item_class(item) do %>
+          <span><%= category_name(item) %></span>
+          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: list_item_class(item) do %>
             <span><%= item.name %></span>
             <span><%= item.quantity %></span>
           <% end %>
