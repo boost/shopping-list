@@ -18,8 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Styling
 gem 'foundation-icons-sass-rails'
-# gem 'foundation-rails'
-# gem 'autoprefixer-rails'
+gem 'foundation-rails'
+gem 'autoprefixer-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
