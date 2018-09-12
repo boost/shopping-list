@@ -28,3 +28,4 @@ Then go to `localhost:3000` in your browser 😀
 ### Resources
 
 * [How to use MySQL With Your Ruby on Rails Application](https://www.1and1.com/cloud-community/learn/application/ruby-on-rails/how-to-use-mysql-with-your-ruby-on-rails-application/)
+* [custom controller action with link_to helper in Rails 5](https://medium.com/@brandonbaker40/custom-controller-action-with-link-to-helper-in-rails-5-520a19653a7f)

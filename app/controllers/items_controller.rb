@@ -15,6 +15,14 @@ class ItemsController < ApplicationController
     redirect_to list_path(@list)
   end
 
+  def toggle_checked
+    @item = Item.find(params[:item_id])
+    @item.checked = !@item.checked
+    @item.save
+
+    redirect_to list_path(@item.list_id)
+  end
+
   private
 
   def comment_params
