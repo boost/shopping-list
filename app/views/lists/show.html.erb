@@ -5,8 +5,10 @@
     <ul>
       <% @list.items.each do |item| %>
         <li>
-          <span><%= item.name %></span>
-          <span><%= item.quantity %></span>
+          <%= link_to list_item_path(@list, item), method: :put, class: item_class(item) do %>
+            <span><%= item.name %></span>
+            <span><%= item.quantity %></span>
+          <% end %>
           <%= link_to [item.list, item], method: :delete do %>
             <i class="icon fi-trash"></i>
           <% end %>

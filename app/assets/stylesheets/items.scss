@@ -1,3 +1,14 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.item-data {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+
+  &.checked {
+    text-decoration: line-through;
+  }
+}
