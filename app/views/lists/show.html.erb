@@ -5,7 +5,7 @@
     <ul>
       <% @list.items.each do |item| %>
         <li>
-          <%= link_to list_item_path(@list, item), method: :put, class: item_class(item) do %>
+          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: item_class(item) do %>
             <span><%= item.name %></span>
             <span><%= item.quantity %></span>
           <% end %>
