@@ -1,27 +1,10 @@
-<h2><%= format_list_name(@list) %></h2>
+<h3><%= format_list_name(@list) %></h3>
 
 <div id="list">
   <% if @list.items.any? %>
     <ul>
-      <% @list.items.each do |item| %>
-        <%= content_tag :li, class: list_item_class(item) do %>
-          <div><%= category_name(item) %></div>
-          <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put do %>
-            <div class="item-name"><%= item.name %></div>
-          <% end %>
-          <div class="item-quantity">
-            <%= link_to list_item_decrement_quantity_path(@list.id, item.id), method: :put, class: "quantity-button" do %>
-              <i class="icon fi-minus"></i>
-            <% end %>
-            <div class="quantity-text"><%= item.quantity %></div>
-            <%= link_to list_item_increment_quantity_path(@list.id, item.id), method: :put, class: "quantity-button" do %>
-              <i class="icon fi-plus"></i>
-            <% end %>
-          </div>
-          <%= link_to [item.list, item], method: :delete do %>
-            <i class="icon fi-trash"></i>
-          <% end %>
-        <% end %>
+      <% @list.items.each do |i| %>
+        <%= render 'lists/list_item', item: i %>
       <% end %>
     </ul>
   <% else %>
@@ -31,10 +14,10 @@
 
 <% if flash.notice %>
   <div id="errors">
-    <h3>
+    <h4>
       <%= pluralize(flash.notice.count, "error") %> prohibited
       this item from being saved:
-    </h3>
+    </h4>
     <ul>
       <% flash.notice.each do |msg| %>
         <li><%= msg %></li>
@@ -44,16 +27,23 @@
 <% end %>
 
 <%= form_with(model: [ @list, @list.items.build ], local: true) do |form| %>
-  <p>
-    <%= form.text_field :name, placeholder: :name %>
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity, value: 1 %>
-    <%= form.select(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] })) %>
-    <%= form.submit "Add item" %>
-  </p>
+  <div class="row">
+    <div class="columns small-9 large-4">
+      <%= form.text_field :name, placeholder: :name %>
+    </div>
+    <div class="columns small-3 large-2">
+      <%= form.number_field :quantity, value: 1 %>
+    </div>
+    <div class="columns small-6 large-3">
+      <%= form.select(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] })) %>
+    </div>
+    <div class="columns small-6 large-3">
+      <%= form.submit "Add item", class: "button small" %>
+    </div>
+  </div>
 <% end %>
 
-<%= link_to lists_path, class: "nav-link" do %>
+<%= link_to lists_path, class: "button" do %>
   Home
-  <i class="icon fi-home"></i>
+  <i class="icon-right fi-home"></i>
 <% end %>

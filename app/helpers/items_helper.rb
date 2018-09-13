@@ -1,10 +1,8 @@
 module ItemsHelper
   def list_item_class(item)
-    if item.checked
-      'item-data checked'
-    else
-      'item-data'
-    end
+    checked = item.checked ? ' checked' : ''
+
+    'row' + checked
   end
 
   def category_name(item)
