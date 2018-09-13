@@ -1,12 +1,16 @@
-<div id="lists">
+<div id="list">
   <% if @lists.any? %>
-    <h2>Your lists</h2>
+    <h3>Your lists</h3>
     <ul>
       <% @lists.reverse_each do |list| %>
-      <li class="grid-x">
-        <%= link_to format_list_name(list), list_path(list), class: "cell" %>
-        <%= link_to list_path(list), method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "cell" do %>
-          <i class="icon fi-trash"></i>
+      <li class="row">
+        <%= link_to format_list_name(list), list_path(list), class: 'columns small-10' %>
+        <%= link_to list_path(list),
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            remote: true,
+            class: 'columns small-2' do %>
+          <i class="fi-trash"></i>
         <% end %>
       </li>
       <% end %>
@@ -16,7 +20,7 @@
   <% end %>
 </div>
 
-<%= link_to lists_path, method: :post, class: "nav-link" do %>
+<%= link_to lists_path, method: :post, class: 'button' do %>
   Create new list
-  <i class="icon fi-plus"></i>
+  <i class="icon-right fi-plus"></i>
 <% end %>
