@@ -16,15 +16,11 @@
 
  */
 @import 'foundation-icons';
+@import 'foundation_and_overrides';
 
 /* CUSTOM VARIABLES */
 
 $boost-red: #B72039;
-
-/* FOUNDATION BREAKPOINTS */
-
-$medium-start: 40.063em;
-$large-start: 63.9375em;
 
 /* BASICS */
 
@@ -38,11 +34,11 @@ body {
 #container {
   margin: 0 auto;
 
-  @media screen and (min-width: $medium-start) {
+  @media #{$medium-up} {
     max-width: 50%;
   }
 
-  @media screen and (min-width: $large-start) {
+  @media #{$large-up} {
     max-width: 40%;
   }
 }
