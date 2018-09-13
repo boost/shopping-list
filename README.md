@@ -26,6 +26,12 @@ rails server
 
 Then go to `localhost:3000` in your browser 😀
 
+To run tests:
+
+```bash
+bundle exec rspec
+```
+
 ### Resources
 
 * [How to use MySQL With Your Ruby on Rails Application](https://www.1and1.com/cloud-community/learn/application/ruby-on-rails/how-to-use-mysql-with-your-ruby-on-rails-application/)
