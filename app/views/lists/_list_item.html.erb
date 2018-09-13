@@ -1,8 +1,7 @@
 <%= content_tag :li, class: list_item_class(item) do %>
-  <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: 'column small-6 large-4' do %>
+  <%= link_to list_item_toggle_checked_path(@list.id, item.id), method: :put, class: 'column small-6 large-5' do %>
     <div class="item-name"><%= item.name %></div>
   <% end %>
-  <div class="column small-6 large-4"><%= category_name(item) %></div>
   <div class="column small-6 large-3">
     <%= link_to list_item_decrement_quantity_path(@list.id, item.id), method: :put do %>
       <i class="icon-left fi-minus"></i>
@@ -12,6 +11,9 @@
       <i class="icon-right fi-plus"></i>
     <% end %>
   </div>
+  <%= content_tag :div, class: 'column small-6 large-1', title: category_name(item) do %>
+    <%= category_emoji(item) %>
+  <% end %>
   <%= link_to [item.list, item], method: :delete, class: 'column small-6 large-1' do %>
     <i class="fi-trash"></i>
   <% end %>
