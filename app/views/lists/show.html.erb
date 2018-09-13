@@ -15,7 +15,7 @@
 <% if flash.notice %>
   <div id="errors">
     <h4>
-      <%= pluralize(flash.notice.count, "error") %> prohibited
+      <%= pluralize(flash.notice.count, 'error') %> prohibited
       this item from being saved:
     </h4>
     <ul>
@@ -38,12 +38,12 @@
       <%= form.select(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] })) %>
     </div>
     <div class="columns small-6 large-3">
-      <%= form.submit "Add item", class: "button small" %>
+      <%= form.submit 'Add item', class: 'button small' %>
     </div>
   </div>
 <% end %>
 
-<%= link_to lists_path, class: "button" do %>
+<%= link_to lists_path, class: 'button' do %>
   Home
   <i class="icon-right fi-home"></i>
 <% end %>
