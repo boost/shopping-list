@@ -20,7 +20,16 @@
   <% end %>
 </div>
 
-<%= link_to lists_path, method: :post, class: 'button' do %>
-  Create new list
-  <i class="icon-right fi-plus"></i>
+<%= form_with(model: List.new) do |form| %>
+  <div class="row">
+    <div class="columns small-6">
+      <%= form.text_field :name, placeholder: :name %>
+    </div>
+    <div class="columns small-6">
+      <%= button_tag type: 'submit', class: 'button tiny' do %>
+        Create new list
+        <i class="icon-right fi-plus"></i>
+      <% end %>
+    </div>
+  </div>
 <% end %>

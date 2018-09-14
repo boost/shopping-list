@@ -18,7 +18,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new
+    @list = List.new(list_params)
 
     @list.save
     redirect_to @list
@@ -29,5 +29,12 @@ class ListsController < ApplicationController
     @list.destroy
 
     redirect_to lists_path
+  end
+
+  private
+
+  def list_params
+    # TODO: account for empty string here? If string is empty, set field to nil?
+    params.require(:list).permit(:name)
   end
 end

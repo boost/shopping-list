@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe List, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'is valid with a name' do
+    expect(List.new(name: "Katherine's awesome list")).to be_valid
+  end
+
+  it 'is valid without a name' do
+    expect(List.new).to be_valid
+  end
 end
