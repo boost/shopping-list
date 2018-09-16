@@ -10,9 +10,26 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require foundation
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function() {
+  $(document).foundation();
+
+  // To rename a list title
+  $('.js-list-title-form').hide();
+
+  $('.js-edit-list-title').on('click', () => {
+    $('.js-list-title-form').toggle();
+    $('.js-list-title').hide();
+  })
+
+  $('.js-close-form').on('click', () => {
+    $('.js-list-title').hide();
+    $('.js-edit-list-title').toggle();
+  })
+});

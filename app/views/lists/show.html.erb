@@ -1,4 +1,22 @@
-<h3><%= format_list_name(@list) %></h3>
+<h3>
+  <div class="js-list-title">
+    <%= format_list_name(@list) %>
+    <i class="js-edit-list-title icon-right fi-pencil"></i>
+  </div>
+
+  <%= form_with model: @list, method: :put, class: "js-list-title-form" do |f| %>
+    <div class="row">
+      <div class="columns small-6">
+        <%= f.text_field :name, placeholder: format_list_name(@list), value: "" %>
+      </div>
+      <div class="columns small-2">
+        <%= button_tag type: 'submit', class: 'js-close-form button tiny' do %>
+          <i class="icon-right fi-check"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</h3>
 
 <div id="list">
   <% if @list.items.any? %>

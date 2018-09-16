@@ -21,6 +21,8 @@ gem 'foundation-icons-sass-rails'
 gem 'foundation-rails'
 gem 'autoprefixer-rails'
 
+gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
