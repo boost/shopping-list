@@ -28,7 +28,7 @@ $(function() {
     $('.js-list-title').hide();
   })
 
-  $('.js-close-form').on('click', () => {
+  $('.js-submit-form').on('click', () => {
     $('.js-list-title').hide();
     $('.js-edit-list-title').toggle();
   })

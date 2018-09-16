@@ -28,6 +28,9 @@ Then go to `localhost:3000` in your browser 😀
 
 To run tests:
 
+Dependencies
+* Chromedriver
+
 ```bash
 bundle exec rspec
 ```
