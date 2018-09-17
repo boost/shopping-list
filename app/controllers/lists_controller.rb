@@ -40,7 +40,7 @@ class ListsController < ApplicationController
     @list.save if @list.valid?
     flash[:list_notice] = @list.errors.full_messages if @list.errors.count > 0
 
-    redirect_to @list
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy

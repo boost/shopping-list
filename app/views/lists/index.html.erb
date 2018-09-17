@@ -4,7 +4,9 @@
     <ul>
       <% @lists.reverse_each do |list| %>
         <li class="row">
-          <%= link_to list.name, list_path(list), class: 'columns small-10' %>
+          <div class="columns small-10">
+            <%= render 'lists/editable_list_title', list: list %>
+          </div>
           <%= link_to list_path(list),
               method: :delete,
               data: { confirm: 'Are you sure?' },

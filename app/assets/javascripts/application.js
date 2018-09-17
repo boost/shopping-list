@@ -16,21 +16,24 @@
 //= require_tree .
 
 document.addEventListener("turbolinks:load", () => {
-  const listTitle = document.querySelector('.js-list-title')
-  const editListTitle = document.querySelector('.js-edit-list-title')
-  const listTitleForm = document.querySelector('.js-list-title-form')
-  const listFormSubmit = document.querySelector('.js-submit-form')
+  const editableTitles = document.querySelectorAll('.js-editable-title');
 
-  editListTitle.addEventListener('click', () => {
-    listTitle.classList.toggle('hidden')
-    listTitleForm.classList.toggle('hidden')
+  editableTitles.forEach(t => {
+    const editListTitle = t.querySelector('.js-edit-list-title');
+    const listTitle = t.querySelector('.js-list-title');
+    const listTitleForm = t.querySelector('.js-list-title-form');
+    const listFormSubmit = t.querySelector('.js-submit-form');
 
-    const input = document.querySelector('#list_name')
-    input.focus()
-  })
+    editListTitle.addEventListener('click', () => {
+      listTitle.classList.toggle('hidden');
+      listTitleForm.classList.toggle('hidden');
 
-  listFormSubmit.addEventListener('click', () => {
-    listTitleForm.classList.toggle('hidden')
-    listTitle.classList.toggle('hidden')
+      t.querySelector('#list_name').focus();
+    })
+
+    listFormSubmit.addEventListener('click', () => {
+      listTitle.classList.toggle('hidden');
+      listTitleForm.classList.toggle('hidden');
+    })
   })
 })
