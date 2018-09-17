@@ -10,26 +10,23 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require foundation
 //= require_tree .
 
-$(function() {
-  $(document).foundation();
+window.onload = () => {
+  const listTitle = document.querySelector('.js-list-title')
+  const editListTitle = document.querySelector('.js-edit-list-title')
+  const listTitleForm = document.querySelector('.js-list-title-form')
+  const listFormSubmit = document.querySelector('.js-submit-form')
 
-  // To rename a list title
-  $('.js-list-title-form').hide();
-
-  $('.js-edit-list-title').on('click', () => {
-    $('.js-list-title-form').toggle();
-    $('.js-list-title').hide();
+  editListTitle.addEventListener('click', () => {
+    listTitle.classList.toggle('hidden')
+    listTitleForm.classList.toggle('hidden')
   })
 
-  $('.js-submit-form').on('click', () => {
-    $('.js-list-title').hide();
-    $('.js-edit-list-title').toggle();
+  listFormSubmit.addEventListener('click', () => {
+    listTitleForm.classList.toggle('hidden')
+    listTitle.classList.toggle('hidden')
   })
-});
+}

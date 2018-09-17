@@ -4,10 +4,10 @@
     <i class="js-edit-list-title icon-right fi-pencil"></i>
   </div>
 
-  <%= form_with model: @list, method: :put, class: "js-list-title-form" do |f| %>
+  <%= form_with model: @list, method: :put, class: "js-list-title-form hidden" do |f| %>
     <div class="row">
       <div class="columns small-6">
-        <%= f.text_field :name, placeholder: format_list_name(@list), value: "" %>
+        <%= f.text_field :name, placeholder: format_list_name(@list), value: "", autofocus: true %>
       </div>
       <div class="columns small-2">
         <%= button_tag type: 'submit', class: 'js-submit-form button tiny' do %>
