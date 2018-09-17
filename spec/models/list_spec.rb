@@ -5,7 +5,7 @@ RSpec.describe List, type: :model do
     expect(List.new(name: "Katherine's awesome list")).to be_valid
   end
 
-  it 'is valid without a name' do
+  it 'is invalid without a name' do
     expect(List.new).to_not be_valid
   end
 end

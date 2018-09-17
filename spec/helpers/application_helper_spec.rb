@@ -11,10 +11,4 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ApplicationHelper, type: :helper do
-  describe '#intersperse' do
-    it 'correctly intersperses the separator in the array' do
-      expect(helper.intersperse(%w[a a a], '.')).to eq(['a', '.', 'a', '.', 'a'])
-      expect(helper.intersperse(%w[z z z], 5)).to eq(['z', 5, 'z', 5, 'z'])
-    end
-  end
 end

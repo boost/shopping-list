@@ -14,15 +14,14 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+
     redirect_to @list
   end
 
   def create
     @list = List.new(list_params)
 
-    if @list.valid?
-      @list.save
-
+    if @list.save
       redirect_to @list
     else
       flash[:notice] = @list.errors.full_messages if @list.errors.count > 0
@@ -33,13 +32,10 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-
     @list.update(list_params)
-    @list.name = list_params[:name]
+    @list.save
 
-    @list.save if @list.valid?
     flash[:list_notice] = @list.errors.full_messages if @list.errors.count > 0
-
     redirect_back(fallback_location: root_path)
   end
 

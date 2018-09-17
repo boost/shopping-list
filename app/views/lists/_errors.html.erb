@@ -1,6 +1,6 @@
 <div class="errors">
-  <strong><%= pluralize(errors.count, 'error') %>:</strong>
-  <% intersperse(errors, ", ").each do |msg| %>
-    <span><%= msg %></span>
-  <% end %>
+  <strong><%= pluralize(errors.count, 'error') %>: </strong>
+  <span>
+    <%= errors.join(", ") %>
+  </span>
 </div>
