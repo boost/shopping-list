@@ -1,13 +1,18 @@
 <h3>
   <div class="js-list-title">
-    <%= format_list_name(@list) %>
+    <%= @list.name %>
     <i class="js-edit-list-title icon-right fi-pencil"></i>
   </div>
+
+  <p>
+    Created at:
+    <%= format_time(@list.created_at) %>
+  </p>
 
   <%= form_with model: @list, method: :put, class: "js-list-title-form hidden" do |f| %>
     <div class="row">
       <div class="columns small-6">
-        <%= f.text_field :name, placeholder: format_list_name(@list), value: "", autofocus: true %>
+        <%= f.text_field :name, placeholder: @list.name, value: "", required: true %>
       </div>
       <div class="columns small-2">
         <%= button_tag type: 'submit', class: 'js-submit-form button tiny' do %>
@@ -17,6 +22,10 @@
     </div>
   <% end %>
 </h3>
+
+<% if flash[:list_notice] %>
+  <%= render 'errors', errors: flash[:list_notice] %>
+<% end %>
 
 <div id="list">
   <% if @list.items.any? %>
@@ -29,20 +38,6 @@
     <p>No items have yet been added.</p>
   <% end %>
 </div>
-
-<% if flash.notice %>
-  <div id="errors">
-    <h4>
-      <%= pluralize(flash.notice.count, 'error') %> prohibited
-      this item from being saved:
-    </h4>
-    <ul>
-      <% flash.notice.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <%= form_with(model: [ @list, @list.items.build ], local: true) do |form| %>
   <div class="row">
@@ -59,6 +54,10 @@
       <%= form.submit 'Add item', class: 'button small' %>
     </div>
   </div>
+<% end %>
+
+<% if flash[:item_notice] %>
+  <%= render 'errors', errors: flash[:item_notice] %>
 <% end %>
 
 <%= link_to lists_path, class: 'button' do %>

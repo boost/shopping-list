@@ -23,6 +23,9 @@ window.onload = () => {
   editListTitle.addEventListener('click', () => {
     listTitle.classList.toggle('hidden')
     listTitleForm.classList.toggle('hidden')
+
+    const input = document.querySelector('#list_name')
+    input.focus()
   })
 
   listFormSubmit.addEventListener('click', () => {

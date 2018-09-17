@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
     @list = List.find(params[:list_id])
     @item = @list.items.create(item_params)
 
-    flash[:notice] = @item.errors.full_messages if @item.errors.count > 0
+    flash[:item_notice] = @item.errors.full_messages if @item.errors.count > 0
 
     redirect_to list_path(@list)
   end

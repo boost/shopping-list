@@ -3,16 +3,16 @@
     <h3>Your lists</h3>
     <ul>
       <% @lists.reverse_each do |list| %>
-      <li class="row">
-        <%= link_to format_list_name(list), list_path(list), class: 'columns small-10' %>
-        <%= link_to list_path(list),
-            method: :delete,
-            data: { confirm: 'Are you sure?' },
-            remote: true,
-            class: 'columns small-2' do %>
-          <i class="fi-trash"></i>
-        <% end %>
-      </li>
+        <li class="row">
+          <%= link_to list.name, list_path(list), class: 'columns small-10' %>
+          <%= link_to list_path(list),
+              method: :delete,
+              data: { confirm: 'Are you sure?' },
+              remote: true,
+              class: 'columns small-2' do %>
+            <i class="fi-trash"></i>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   <% else %>
@@ -32,4 +32,8 @@
       <% end %>
     </div>
   </div>
+<% end %>
+
+<% if flash[:notice] %>
+  <%= render 'errors', errors: flash[:notice] %>
 <% end %>

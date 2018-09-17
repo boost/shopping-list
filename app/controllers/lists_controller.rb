@@ -20,14 +20,25 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
 
-    @list.save
-    redirect_to @list
+    if @list.valid?
+      @list.save
+
+      redirect_to @list
+    else
+      flash[:notice] = @list.errors.full_messages if @list.errors.count > 0
+
+      redirect_to lists_path
+    end
   end
 
   def update
     @list = List.find(params[:id])
+
+    @list.update(list_params)
     @list.name = list_params[:name]
-    @list.save
+
+    @list.save if @list.valid?
+    flash[:list_notice] = @list.errors.full_messages if @list.errors.count > 0
 
     redirect_to @list
   end
@@ -42,7 +53,6 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    # TODO: account for empty string here? If string is empty, set field to nil?
     params.require(:list).permit(:name)
   end
 end

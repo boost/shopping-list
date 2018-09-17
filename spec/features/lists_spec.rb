@@ -14,17 +14,10 @@ RSpec.feature 'Lists', type: :feature do
   end
 
   describe 'creating a list' do
-    scenario 'user creates a new list with a name' do
+    scenario 'user creates a new list' do
       create_list(list_name)
 
       expect(page).to have_content list_name
-      expect(page).to have_content 'No items have yet been added'
-    end
-
-    scenario 'user creates a new list without a name' do
-      click_button 'Create new list'
-
-      expect(page).to have_content 'List created at'
       expect(page).to have_content 'No items have yet been added'
     end
   end
@@ -49,6 +42,7 @@ RSpec.feature 'Lists', type: :feature do
     end
 
     let(:valid_name) { 'Brand-new name' }
+    let(:invalid_name) { 'Ok' }
 
     scenario "user edits a lists's name to something valid", js: true do
       find('.js-edit-list-title').click
@@ -57,6 +51,17 @@ RSpec.feature 'Lists', type: :feature do
       find('.js-submit-form').click
 
       expect(page).to have_content valid_name
+    end
+
+    scenario "user edits a lists's name to something invalid", js: true do
+      find('.js-edit-list-title').click
+      title_form = find('.js-list-title-form')
+      title_form.fill_in 'list[name]', with: invalid_name
+      find('.js-submit-form').click
+
+      expect(page).to_not have_content invalid_name
+      expect(page).to have_content 'Name is too short (minimum is 5 characters)'
+      expect(page).to have_content list_name
     end
   end
 end

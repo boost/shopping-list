@@ -14,15 +14,6 @@ RSpec.describe ListsController, type: :controller do
     end
   end
 
-  describe '#create' do
-    it 'redirects to /lists/:id' do
-      post :create, params: { list: { name: 'OK' } }
-
-      expect(response).to have_http_status '302'
-      expect(response).to redirect_to("/lists/#{assigns(:list).id}")
-    end
-  end
-
   describe '#destroy' do
     before do
       @list = List.create(name: 'My list')
