@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 
-window.onload = () => {
+document.addEventListener("turbolinks:load", () => {
   const listTitle = document.querySelector('.js-list-title')
   const editListTitle = document.querySelector('.js-edit-list-title')
   const listTitleForm = document.querySelector('.js-list-title-form')
@@ -33,4 +33,4 @@ window.onload = () => {
     listTitleForm.classList.toggle('hidden')
     listTitle.classList.toggle('hidden')
   })
-}
+})
