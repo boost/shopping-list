@@ -14,14 +14,29 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
+
     redirect_to @list
   end
 
   def create
-    @list = List.new
+    @list = List.new(list_params)
 
+    if @list.save
+      redirect_to @list
+    else
+      flash[:notice] = @list.errors.full_messages if @list.errors.count > 0
+
+      redirect_to lists_path
+    end
+  end
+
+  def update
+    @list = List.find(params[:id])
+    @list.update(list_params)
     @list.save
-    redirect_to @list
+
+    flash[:list_notice] = @list.errors.full_messages if @list.errors.count > 0
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -29,5 +44,11 @@ class ListsController < ApplicationController
     @list.destroy
 
     redirect_to lists_path
+  end
+
+  private
+
+  def list_params
+    params.require(:list).permit(:name)
   end
 end

@@ -1,4 +1,15 @@
-<h3><%= format_list_name(@list) %></h3>
+<h3>
+  <%= render 'lists/editable_list_title', list: @list %>
+
+  <p>
+    Created at:
+    <%= l @list.created_at, format: :main %>
+  </p>
+</h3>
+
+<% if flash[:list_notice] %>
+  <%= render 'errors', errors: flash[:list_notice] %>
+<% end %>
 
 <div id="list">
   <% if @list.items.any? %>
@@ -11,20 +22,6 @@
     <p>No items have yet been added.</p>
   <% end %>
 </div>
-
-<% if flash.notice %>
-  <div id="errors">
-    <h4>
-      <%= pluralize(flash.notice.count, 'error') %> prohibited
-      this item from being saved:
-    </h4>
-    <ul>
-      <% flash.notice.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 
 <%= form_with(model: [ @list, @list.items.build ], local: true) do |form| %>
   <div class="row">
@@ -41,6 +38,10 @@
       <%= form.submit 'Add item', class: 'button small' %>
     </div>
   </div>
+<% end %>
+
+<% if flash[:item_notice] %>
+  <%= render 'errors', errors: flash[:item_notice] %>
 <% end %>
 
 <%= link_to lists_path, class: 'button' do %>

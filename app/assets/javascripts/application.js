@@ -15,4 +15,25 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+document.addEventListener("turbolinks:load", () => {
+  const editableTitles = document.querySelectorAll('.js-editable-title');
+
+  editableTitles.forEach(t => {
+    const editListTitle = t.querySelector('.js-edit-list-title');
+    const listTitle = t.querySelector('.js-list-title');
+    const listTitleForm = t.querySelector('.js-list-title-form');
+    const listFormSubmit = t.querySelector('.js-submit-form');
+
+    editListTitle.addEventListener('click', () => {
+      listTitle.classList.toggle('hidden');
+      listTitleForm.classList.toggle('hidden');
+
+      t.querySelector('#list_name').focus();
+    })
+
+    listFormSubmit.addEventListener('click', () => {
+      listTitle.classList.toggle('hidden');
+      listTitleForm.classList.toggle('hidden');
+    })
+  })
+})
