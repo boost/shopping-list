@@ -30,7 +30,7 @@ RSpec.feature 'Lists', type: :feature do
 
     scenario 'user deletes a list' do
       list = find('li', text: another_list_name)
-      delete_link = list.all('a').last.click # TODO: fragile
+      delete_link = list.find('.delete-list').click
 
       expect(page).to_not have_content another_list_name
     end
