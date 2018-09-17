@@ -4,11 +4,6 @@
     <i class="js-edit-list-title icon-right fi-pencil"></i>
   </div>
 
-  <p>
-    Created at:
-    <%= format_time(@list.created_at) %>
-  </p>
-
   <%= form_with model: @list, method: :put, class: "js-list-title-form hidden" do |f| %>
     <div class="row">
       <div class="columns small-6">
@@ -21,6 +16,11 @@
       </div>
     </div>
   <% end %>
+  
+  <p>
+    Created at:
+    <%= format_time(@list.created_at) %>
+  </p>
 </h3>
 
 <% if flash[:list_notice] %>
