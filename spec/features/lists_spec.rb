@@ -6,62 +6,75 @@ RSpec.configure do |c|
 end
 
 RSpec.feature 'Lists', type: :feature do
-  let(:list_name) { 'My awesome list' }
-  let(:another_list_name) { 'Another great list' }
-
-  before do
-    visit root_path
-  end
+  let(:valid_name) { 'Brand-new name' }
+  let(:invalid_name) { 'Ok' }
 
   describe 'creating a list' do
-    scenario 'user creates a new list' do
-      create_list(list_name)
+    before do
+      visit root_path
+    end
 
-      expect(page).to have_content list_name
+    scenario 'user creates a new list' do
+      name = 'Best list ever'
+
+      fill_in 'Name', with: name
+      click_button 'Create new list'
+
+      expect(page).to have_content name
       expect(page).to have_content 'No items have yet been added'
     end
   end
 
   describe 'deleting a list' do
     before do
-      create_list(another_list_name)
+      @list = FactoryBot.create(:list)
       visit root_path
     end
 
     scenario 'user deletes a list' do
-      list = find('li', text: another_list_name)
-      delete_link = list.find('.delete-list').click
+      shopping_list = find('li', text: @list.name)
+      delete_link = shopping_list.find('.delete-list').click
 
-      expect(page).to_not have_content another_list_name
+      expect(page).to_not have_content @list.name
     end
   end
 
-  describe 'updating a list name from the list page (= show)' do
+  describe "updating a list's name" do
     before do
-      create_list(list_name)
+      @list = FactoryBot.create(:list)
+      visit list_path(@list.id)
     end
 
-    let(:valid_name) { 'Brand-new name' }
-    let(:invalid_name) { 'Ok' }
+    context "from that list's page" do
+      scenario "user updates the lists's name to something valid", js: true do
+        update_list_name(valid_name)
 
-    scenario "user edits a lists's name to something valid", js: true do
-      find('.js-edit-list-title').click
-      title_form = find('.js-list-title-form')
-      title_form.fill_in 'list[name]', with: valid_name
-      find('.js-submit-form').click
+        expect(page).to have_content valid_name
+      end
 
-      expect(page).to have_content valid_name
+      scenario "user edits a lists's name to something invalid", js: true do
+        update_list_name(invalid_name)
+
+        expect(page).to_not have_content invalid_name
+        expect(page).to have_content 'Name is too short (minimum is 5 characters)'
+        expect(page).to have_content @list.name
+      end
     end
 
-    scenario "user edits a lists's name to something invalid", js: true do
-      find('.js-edit-list-title').click
-      title_form = find('.js-list-title-form')
-      title_form.fill_in 'list[name]', with: invalid_name
-      find('.js-submit-form').click
+    context 'from the list index page' do
+      scenario 'user updates the list name to something valid' do
+        update_list_name(valid_name)
 
-      expect(page).to_not have_content invalid_name
-      expect(page).to have_content 'Name is too short (minimum is 5 characters)'
-      expect(page).to have_content list_name
+        expect(page).to have_content valid_name
+        expect(page).to_not have_content @list.name
+      end
+
+      scenario "user edits a lists's name to something invalid", js: true do
+        update_list_name(invalid_name)
+
+        expect(page).to_not have_content invalid_name
+        expect(page).to have_content @list.name
+      end
     end
   end
 end
