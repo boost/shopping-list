@@ -5,7 +5,7 @@ class BackFillListNames < ActiveRecord::Migration[5.2]
 
   def change
     # NOTE: the below method would not be suitable to use for a large # of records.
-    ShoppingList.where(name: nil).each do |entry|
+    List.where(name: nil).each do |entry|
       entry.name = "List created at #{timestamp(entry)}"
       entry.save
     end
