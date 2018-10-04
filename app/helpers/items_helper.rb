@@ -1,5 +1,5 @@
 module ItemsHelper
-  def list_item_class(item)
+  def shopping_list_item_class(item)
     checked = item.checked ? ' checked' : ''
 
     'row' + checked

@@ -1,13 +1,13 @@
 <div id="list">
-  <% if @lists.any? %>
+  <% if @shopping_lists.any? %>
     <h3>Your lists</h3>
     <ul>
-      <% @lists.reverse_each do |list| %>
+      <% @shopping_lists.reverse_each do |shopping_list| %>
         <li class="row">
           <div class="columns small-10">
-            <%= render 'lists/editable_list_title', list: list %>
+            <%= render 'shopping_lists/editable_shopping_list_title', shopping_list: shopping_list %>
           </div>
-          <%= link_to list_path(list),
+          <%= link_to shopping_list_path(shopping_list),
               method: :delete,
               data: { confirm: 'Are you sure?' },
               remote: true,
@@ -18,18 +18,18 @@
       <% end %>
     </ul>
   <% else %>
-    <p>No lists have yet been created.</p>
+    <p>No shopping lists have yet been created.</p>
   <% end %>
 </div>
 
-<%= form_with(model: List.new) do |form| %>
+<%= form_with(model: ShoppingList.new) do |form| %>
   <div class="row">
     <div class="columns small-6">
       <%= form.text_field :name, placeholder: :name %>
     </div>
     <div class="columns small-6">
       <%= button_tag type: 'submit', class: 'button tiny' do %>
-        Create new list
+        Create new shopping list
         <i class="icon-right fi-plus"></i>
       <% end %>
     </div>

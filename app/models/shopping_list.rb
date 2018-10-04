@@ -1,4 +1,4 @@
-class List < ApplicationRecord
+class ShoppingList < ApplicationRecord
   has_many :items, dependent: :destroy
 
   validates :name, length: { minimum: 5 }

@@ -1,13 +1,13 @@
 <div class="js-editable-title">
   <div class="js-list-title">
-    <%= link_to list.name, list_path(list) %>
+    <%= link_to shopping_list.name, shopping_list_path(shopping_list) %>
     <i class="js-edit-list-title icon-right fi-pencil"></i>
   </div>
 
-  <%= form_with model: list, method: :put, class: "js-list-title-form hidden" do |f| %>
+  <%= form_with model: shopping_list, method: :put, class: "js-list-title-form hidden" do |f| %>
   <div class="row">
     <div class="columns small-6">
-      <%= f.text_field :name, placeholder: list.name, value: "", required: true %>
+      <%= f.text_field :name, placeholder: shopping_list.name, value: "", required: true %>
     </div>
     <div class="columns small-2">
       <%= button_tag type: 'submit', class: 'js-submit-form button tiny' do %>
