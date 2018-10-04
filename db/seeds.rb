@@ -37,3 +37,5 @@ item_categories = [
 item_categories.each do |category|
   Category.create(name: category)
 end
+
+ShoppingList.create(name: 'Default list')
