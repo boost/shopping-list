@@ -1,9 +1,9 @@
 <h3>
-  <%= render 'lists/editable_list_title', list: @list %>
+  <%= render 'shopping_lists/editable_shopping_list_title', shopping_list: @shopping_list %>
 
   <p>
     Created at:
-    <%= l @list.created_at, format: :main %>
+    <%= l @shopping_list.created_at, format: :main %>
   </p>
 </h3>
 
@@ -12,10 +12,10 @@
 <% end %>
 
 <div id="list">
-  <% if @list.items.any? %>
+  <% if @shopping_list.items.any? %>
     <ul>
-      <% @list.items.each do |i| %>
-        <%= render 'lists/list_item', item: i %>
+      <% @shopping_list.items.each do |i| %>
+        <%= render 'shopping_lists/shopping_list_item', item: i %>
       <% end %>
     </ul>
   <% else %>
@@ -23,7 +23,7 @@
   <% end %>
 </div>
 
-<%= form_with(model: [ @list, @list.items.build ], local: true) do |form| %>
+<%= form_with(model: [ @shopping_list, @shopping_list.items.build ], local: true) do |form| %>
   <div class="row">
     <div class="columns small-9 large-4">
       <%= form.text_field :name, placeholder: :name %>
@@ -44,7 +44,7 @@
   <%= render 'errors', errors: flash[:item_notice] %>
 <% end %>
 
-<%= link_to lists_path, class: 'button' do %>
+<%= link_to shopping_lists_path, class: 'button' do %>
   Home
   <i class="icon-right fi-home"></i>
 <% end %>
