@@ -29,6 +29,17 @@ module Yum
       { text: message }
     end
 
+    def shopping_lists
+      shopping_lists = ShoppingList.all
+
+      if shopping_lists.empty?
+        { text: "There are no shopping lists created. Scarmble and create some" }
+      else
+        { text: "Available shopping lists",
+          attachments: shopping_lists.map { |list| { text: "#{list.hash_tag}#{' (default)' if list.primary}" } } }
+      end
+    end
+
     def orders
       primary_list = ShoppingList.primary
 
@@ -41,8 +52,11 @@ module Yum
     end
 
     def help
-      { text: "/yum <any text>. will make an order for you.\n /yum <command>",
-        attachments: COMMANDS.map { |command, desc| { text: "#{command} - #{desc}" } } }
+      extra_helpers = [{ text: '/yum @<username> <order name>. will let you make an order for another person' },
+                       { text: '/yum #<shopping list name> <order name>. will make an order for you in that shopping list' }]
+
+      { text: "/yum <any text>. will make an order for you in the default shopping list.\n /yum <command>",
+        attachments: COMMANDS.map { |command, desc| { text: "#{command} - #{desc}" } } + extra_helpers }
     end
   end
 end

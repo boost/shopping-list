@@ -34,9 +34,9 @@ module Yum
 
     def message_for(order)
       if order.ordered_by == order.ordered_for
-        "You must be hungry #{order.ordered_by}, you have ordered yummy #{order.name}"
+        "#{order.ordered_by}, you have ordered #{order.name} in #{@shopping_list.name}"
       else
-        "You have ordered yummy #{order.name} for #{order.ordered_for}"
+        "You have ordered #{order.name} for #{order.ordered_for} in #{@shopping_list.name}"
       end
     end
   end

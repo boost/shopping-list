@@ -25,6 +25,11 @@ module Yum
                              creator: @user,
                              name: parsed.non_first_words).call if parsed.has_user?
 
+      return CreateOrder.new(user: @user,
+                             creator: @user,
+                             name: parsed.non_first_words,
+                             shopping_list: parsed.shopping_list).call if parsed.shopping_list?
+
       return CreateOrder.new(user: @user, creator: @user, name: @text).call
     end
   end

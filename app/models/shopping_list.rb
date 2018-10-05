@@ -12,4 +12,8 @@ class ShoppingList < ApplicationRecord
   def downcase_name
     name.downcase!
   end
+
+  def hash_tag
+    '#' + name.gsub(' ', '_')
+  end
 end

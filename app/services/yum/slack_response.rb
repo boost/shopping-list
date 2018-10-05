@@ -9,7 +9,7 @@ module Yum
     def call(payload)
       if Rails.env.development?
         p '----------------SLACK RESPONSE---------------------'
-        p payload
+        pp payload
       else
         RestClient::Request.execute(method: :post, url: @url,
                                     payload: payload.to_json)

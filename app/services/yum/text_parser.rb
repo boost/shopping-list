@@ -1,6 +1,6 @@
 module Yum
   class TextParser
-    attr_reader :text, :command, :user
+    attr_reader :text, :command, :user, :shopping_list
 
     def initialize(text)
       @text = text
@@ -18,6 +18,14 @@ module Yum
       return unless COMMANDS.keys.include? first_word.to_sym
 
       @command = first_word
+      true
+    end
+
+    def shopping_list?
+      matches = first_word.scan(/^#[a-zA-z.0-9]*/)
+      return if matches.empty?
+
+      @shopping_list = matches.first.gsub('#', '').gsub('_', ' ')
       true
     end
 
