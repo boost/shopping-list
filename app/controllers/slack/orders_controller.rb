@@ -7,6 +7,8 @@ module Slack
 
     def create
       Yum::Yummify.new(order_params).call
+
+      head :ok
     end
 
     private

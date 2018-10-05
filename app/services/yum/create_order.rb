@@ -12,7 +12,8 @@ module Yum
     def call
       order = @shopping_list.items.create(name: @name,
                                           ordered_by: @creator,
-                                          ordered_for: @user)
+                                          ordered_for: @user,
+                                          category_id: Category.last.id)
 
       message = order ? message_for(order) : 'Something went wrong. Throw something soft at Eddie'
 

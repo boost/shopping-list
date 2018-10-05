@@ -19,11 +19,11 @@ module Yum
     private
 
     def execute_command(parsed)
-      # return Command.new(parsed.command, @user, @text).call if parsed.command?
+      return Command.new(parsed.command, @user, @text).call if parsed.command?
 
-      # return CreateOrder.new(user: parsed.user,
-      #                        creator: @user,
-      #                        item: parsed.non_first_words).call if parsed.has_user?
+      return CreateOrder.new(user: parsed.user,
+                             creator: @user,
+                             name: parsed.non_first_words).call if parsed.has_user?
 
       return CreateOrder.new(user: @user, creator: @user, name: @text).call
     end

@@ -17,32 +17,32 @@ module Yum
     # command executing methods
     private
 
-      def _?
-        order = Order.where(user: @user).last
+    def _?
+      order = Item.where(ordered_for: @user).last
 
-        message = if order
-                    "#{order.who} ordered #{order.item} at #{order.created_at.strftime('%d %h %H:%M')} for you"
-                  else
-                    'Your dont have any orders yet'
-                  end
+      message = if order
+                  "#{order.ordered_by} ordered #{order.name} at #{order.created_at.strftime('%d %h %H:%M')} for #{order.ordered_for}"
+                else
+                  'Your dont have any orders yet'
+                end
 
-        { text: message }
+      { text: message }
+    end
+
+    def orders
+      primary_list = ShoppingList.primary
+
+      if primary_list.items.empty?
+        { text: "There are no orders for today in #{primary_list.name}" }
+      else
+        { text: "Orders in #{primary_list.name}. slack-yum.herokuapp.com",
+          attachments: primary_list.items.map { |item| { text: "#{item.ordered_for}: #{item.name}" } } }
       end
+    end
 
-      def orders
-        orders = Order.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order(:item)
-
-        if orders.empty?
-          { text: 'There are no orders for today' }
-        else
-          { text: "Orders for #{orders.first.created_at.strftime('%d %h')}. slack-yum.herokuapp.com",
-            attachments: orders.map { |order| { text: "#{order.user}: #{order.item}" } } }
-        end
-      end
-
-      def help
-        { text: "/yum <any text>. will make an order for you.\n /yum <command>",
-          attachments: COMMANDS.map { |command, desc| { text: "#{command} - #{desc}" } } }
-      end
+    def help
+      { text: "/yum <any text>. will make an order for you.\n /yum <command>",
+        attachments: COMMANDS.map { |command, desc| { text: "#{command} - #{desc}" } } }
+    end
   end
 end
