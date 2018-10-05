@@ -21,16 +21,19 @@ module Yum
     def execute_command(parsed)
       return Command.new(parsed.command, @user, @text).call if parsed.command?
 
-      return CreateOrder.new(user: parsed.user,
-                             creator: @user,
-                             name: parsed.non_first_words).call if parsed.has_user?
+      attributes = { ordered_for: @user, ordered_by: @user, name: @text }
 
-      return CreateOrder.new(user: @user,
-                             creator: @user,
-                             name: parsed.non_first_words,
-                             shopping_list: parsed.shopping_list).call if parsed.shopping_list?
+      if parsed.has_user?
+        attributes[:name] = parsed.non_first_words
+        attributes[:ordered_for] = parsed.user
+      end
 
-      return CreateOrder.new(user: @user, creator: @user, name: @text).call
+      if parsed.shopping_list?
+        attributes[:shopping_list] = parsed.shopping_list
+        attributes[:name] = parsed.non_first_words
+      end
+
+      CreateOrder.new(attributes).call
     end
   end
 end
