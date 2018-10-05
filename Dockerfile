@@ -18,7 +18,7 @@ COPY . .
 RUN gem install bundler
 RUN bundle install
 
-RUN RAILS_ENV=$RAILS_ENV bundle exec rake assets:precompile
+RUN RAILS_ENV=$RAILS_ENV bundle exec rails assets:precompile
 
 EXPOSE 3000
 
