@@ -13,7 +13,7 @@ module Yum
       order = @shopping_list.items.create(name: @name,
                                           ordered_by: @creator,
                                           ordered_for: @user,
-                                          category_id: Category.last.id)
+                                          category_id: 25) # Hardcoding the 'Misc' category ID for the moment
 
       message = order ? message_for(order) : 'Something went wrong. Throw something soft at Eddie'
 
