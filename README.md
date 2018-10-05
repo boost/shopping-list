@@ -7,7 +7,7 @@ Every week, Boost orders groceries from Countdown(?). It would be useful to have
 ### To run locally
 
 Dependencies:
-* Ruby 2.5.1
+* Ruby 2.5.0
 * Rails 5.2.1
 * MySQL
    * Install & configure MySQL
