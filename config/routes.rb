@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'shopping_lists#index'
 
   resources :shopping_lists do
     resources :items do
@@ -9,5 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'shopping_lists#index'
+  namespace :slack do
+    resources :orders, only: [:create]
+  end
 end
