@@ -3,7 +3,7 @@ FactoryBot.define do
     name { 'An item' }
     quantity { 2 }
 
-    association :list
+    association :shopping_list
     association :category
   end
 end

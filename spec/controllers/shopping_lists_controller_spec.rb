@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ListsController, type: :controller do
+RSpec.describe ShoppingListsController, type: :controller do
   describe '#index' do
     it 'responds successfully' do
       get :index
@@ -16,13 +16,13 @@ RSpec.describe ListsController, type: :controller do
 
   describe '#destroy' do
     before do
-      @list = List.create(name: 'My list')
+      @shopping_list = ShoppingList.create(name: 'My list')
     end
 
     it 'deletes the list' do
       expect do
-        delete :destroy, params: { id: @list.id }
-      end.to change(List, :count).by(-1)
+        delete :destroy, params: { id: @shopping_list.id }
+      end.to change(ShoppingList, :count).by(-1)
     end
   end
 end

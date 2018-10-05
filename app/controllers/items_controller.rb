@@ -1,19 +1,19 @@
 class ItemsController < ApplicationController
   def create
-    @list = List.find(params[:list_id])
-    @item = @list.items.create(item_params)
+    @shopping_list = ShoppingList.find(params[:shopping_list_id])
+    @item = @shopping_list.items.create(item_params)
 
     flash[:item_notice] = @item.errors.full_messages if @item.errors.count > 0
 
-    redirect_to list_path(@list)
+    redirect_to shopping_list_path(@shopping_list)
   end
 
   def destroy
-    @list = List.find(params[:list_id])
-    @item = @list.items.find(params[:id])
+    @shopping_list = ShoppingList.find(params[:shopping_list_id])
+    @item = @shopping_list.items.find(params[:id])
     @item.destroy
 
-    redirect_to list_path(@list)
+    redirect_to shopping_list_path(@shopping_list)
   end
 
   def toggle_checked
@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     @item.checked = !@item.checked
     @item.save
 
-    redirect_to list_path(@item.list_id)
+    redirect_to shopping_list_path(@item.shopping_list_id)
   end
 
   def decrement_quantity
@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
       @item.save
     end
 
-    redirect_to list_path(@item.list_id)
+    redirect_to shopping_list_path(@item.shopping_list_id)
   end
 
   def increment_quantity
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
     @item.quantity += 1
     @item.save
 
-    redirect_to list_path(@item.list_id)
+    redirect_to shopping_list_path(@item.shopping_list_id)
   end
 
   private

@@ -32,11 +32,11 @@ body {
   margin: 0 auto;
 
   @media #{$medium-up} {
-    max-width: 50%;
+    max-width: 60%;
   }
 
   @media #{$large-up} {
-    max-width: 40%;
+    max-width: 50%;
   }
 }
 

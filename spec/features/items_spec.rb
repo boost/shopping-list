@@ -5,7 +5,7 @@ RSpec.feature 'Items', type: :feature do
 
   before(:each) do
     @item = FactoryBot.create(:item, quantity: quantity)
-    visit list_path(@item.list_id)
+    visit shopping_list_path(@item.shopping_list_id)
   end
 
   describe 'adding an item' do
@@ -43,7 +43,7 @@ RSpec.feature 'Items', type: :feature do
 
       before do
         @canteloupe = FactoryBot.create(:item, quantity: 1, name: name)
-        visit list_path(@canteloupe.list_id)
+        visit shopping_list_path(@canteloupe.shopping_list_id)
       end
 
       it 'is deleted' do
