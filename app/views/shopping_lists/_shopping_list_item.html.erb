@@ -2,7 +2,6 @@
   <%= link_to shopping_list_item_toggle_checked_path(@shopping_list.id, item.id), method: :put, class: 'column small-6 large-4' do %>
     <div class="item-name"><%= item.name %></div>
   <% end %>
-  <div class="column small-6 large-4"><%= category_name(item) %></div>
   <div class="column small-6 large-3">
     <%= link_to shopping_list_item_decrement_quantity_path(@shopping_list.id, item.id), method: :put, class: "decrement-quantity" do %>
       <i class="icon-left fi-minus"></i>
@@ -12,7 +11,12 @@
       <i class="icon-right fi-plus"></i>
     <% end %>
   </div>
-  <%= link_to [item.shopping_list, item], method: :delete, class: 'delete-item column small-6 large-1' do %>
+  <%= link_to [item.shopping_list, item], method: :delete, class: 'delete-item column small-3 large-1' do %>
     <i class="fi-trash"></i>
   <% end %>
+  <div class="column small-9 large-4">
+    <% if item.ordered_by && item.ordered_for %>
+      by: <%= item.ordered_by %>, for: <%= item.ordered_for %>
+    <% end %>
+  </div>
 <% end %>
