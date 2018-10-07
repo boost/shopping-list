@@ -43,7 +43,7 @@ bundle exec rspec
 
 ### ToDos
 
-- [FRONT-END] Add the abilit to switch primary shopping list
+- [FRONT-END] Add the ability to switch primary shopping list
 - [SLACK] Make slack request execution a delayed job and respond to slack right away
 - [SLACK] Send number of items through slack text
 - [SLACK] Respond status of your order for ?
