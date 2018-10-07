@@ -40,3 +40,11 @@ bundle exec rspec
 * [How to use MySQL With Your Ruby on Rails Application](https://www.1and1.com/cloud-community/learn/application/ruby-on-rails/how-to-use-mysql-with-your-ruby-on-rails-application/)
 * [custom controller action with link_to helper in Rails 5](https://medium.com/@brandonbaker40/custom-controller-action-with-link-to-helper-in-rails-5-520a19653a7f)
 * [Better Specs `{ rspec guidelines with ruby }`](http://www.betterspecs.org)
+
+### ToDos
+
+- [FRONT-END] Add the ability to switch primary shopping list
+- [SLACK] Make slack request execution a delayed job and respond to slack right away
+- [SLACK] Send number of items through slack text
+- [SEED] Dont need a shopping list named 'default list'. The idea of having a primary is to set a default shopping list.
+         Cleanup the seeding with `#lunch` as the primary shopping list.
