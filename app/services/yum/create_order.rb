@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yum
   class CreateOrder
     attr_reader :ordered_for, :ordered_by, :name, :shopping_list

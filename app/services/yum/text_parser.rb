@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yum
   class TextParser
     attr_reader :text, :command, :user, :shopping_list

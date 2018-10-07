@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yum
   class Command
     attr_reader :command, :user, :text

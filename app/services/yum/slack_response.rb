@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yum
   class SlackResponse
     attr_reader :url

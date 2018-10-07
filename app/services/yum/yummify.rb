@@ -1,39 +1,46 @@
+# frozen_string_literal: true
+
 module Yum
   class Yummify
     attr_reader :user, :text, :slack_response
 
     def initialize(params)
       @user = params[:user_name]
-      @text = params[:text]
+      @text = TextParser.new(params[:text])
       @slack_response = SlackResponse.new(params[:response_url])
     end
 
     def call
-      parsed = TextParser.new(@text)
-
-      response = execute_command(parsed)
+      response = execute_action
 
       @slack_response.call(response)
     end
 
     private
 
-    def execute_command(parsed)
-      return Command.new(parsed.command, @user, @text).call if parsed.command?
+    def execute_action
+      return Command.new(@text.command, @user, @text.text).call if @text.command?
 
-      attributes = { ordered_for: @user, ordered_by: @user, name: @text }
-
-      if parsed.has_user?
-        attributes[:name] = parsed.non_first_words
-        attributes[:ordered_for] = parsed.user
-      end
-
-      if parsed.shopping_list?
-        attributes[:shopping_list] = parsed.shopping_list
-        attributes[:name] = parsed.non_first_words
-      end
+      attributes = { ordered_for: ordered_for_attribute,
+                     ordered_by: @user,
+                     name: name_attribute,
+                     shopping_list: shopping_list_attribute }
 
       CreateOrder.new(attributes).call
+    end
+
+    def shopping_list_attribute
+      return @text.shopping_list if @text.shopping_list?
+    end
+
+    def ordered_for_attribute
+      @text.has_user? ? @text.user : @user
+    end
+
+    def name_attribute
+      return @text.non_first_words if @text.has_user? || @text.shopping_list?
+
+      @text.text
     end
   end
 end
