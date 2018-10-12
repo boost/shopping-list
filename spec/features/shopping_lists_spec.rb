@@ -20,7 +20,7 @@ RSpec.feature 'Shopping Lists', type: :feature do
       fill_in 'Name', with: name
       click_button 'Create new shopping list'
 
-      expect(page).to have_content name
+      expect(page).to have_content name.downcase
       expect(page).to have_content 'No items have yet been added'
     end
   end
@@ -32,7 +32,7 @@ RSpec.feature 'Shopping Lists', type: :feature do
     end
 
     scenario 'user deletes a list' do
-      shopping_list = find('li', text: @shopping_list.name)
+      shopping_list = find('li', text: @shopping_list.name.downcase)
       delete_link = shopping_list.find('.delete-list').click
 
       expect(page).to_not have_content @shopping_list.name
@@ -49,7 +49,7 @@ RSpec.feature 'Shopping Lists', type: :feature do
       scenario "user updates the lists's name to something valid", js: true do
         update_shopping_list_name(valid_name)
 
-        expect(page).to have_content valid_name
+        expect(page).to have_content valid_name.downcase
       end
 
       scenario "user edits a lists's name to something invalid", js: true do
@@ -65,7 +65,7 @@ RSpec.feature 'Shopping Lists', type: :feature do
       scenario 'user updates the list name to something valid' do
         update_shopping_list_name(valid_name)
 
-        expect(page).to have_content valid_name
+        expect(page).to have_content valid_name.downcase
         expect(page).to_not have_content @shopping_list.name
       end
 
