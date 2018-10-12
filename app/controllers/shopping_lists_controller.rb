@@ -19,11 +19,8 @@ class ShoppingListsController < ApplicationController
   end
 
   def make_primary
-    ShoppingList.update_all(primary: false)
-
-    shopping_list = ShoppingList.find(params[:shopping_list_id])
-    shopping_list.primary = true
-    shopping_list.save!
+    ShoppingList.find_by(primary: true).update(primary: false)
+    ShoppingList.find(params[:shopping_list_id]).update(primary: true)
 
     redirect_to shopping_lists_path
   end
