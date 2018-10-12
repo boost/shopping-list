@@ -77,4 +77,23 @@ RSpec.feature 'Shopping Lists', type: :feature do
       end
     end
   end
+
+  describe 'setting a list as primary', js: true do
+    before do
+      @countdown_list = FactoryBot.create(:shopping_list, name: 'countdown')
+      @bunnings_list = FactoryBot.create(:shopping_list, name: 'bunnings', primary: true)
+
+      visit root_path
+    end
+
+    scenario 'when the user sets the Countdown list as the primary' do
+      countdown_list = find('li', text: @countdown_list.name)
+      bunnings_list = find('li', text: @bunnings_list.name)
+
+      within(countdown_list) { click_link 'set as primary' }
+
+      expect(countdown_list).to have_content 'Primary list'
+      expect(bunnings_list).to have_content 'set as primary'
+    end
+  end
 end

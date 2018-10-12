@@ -18,6 +18,16 @@ class ShoppingListsController < ApplicationController
     redirect_to @shopping_list
   end
 
+  def make_primary
+    ShoppingList.update_all(primary: false)
+
+    shopping_list = ShoppingList.find(params[:shopping_list_id])
+    shopping_list.primary = true
+    shopping_list.save!
+
+    redirect_to shopping_lists_path
+  end
+
   def create
     @shopping_list = ShoppingList.new(shopping_list_params)
 
