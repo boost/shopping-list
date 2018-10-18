@@ -1,0 +1,59 @@
+inherit_from: .rubocop_todo.yml
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'spec/**/**/*'
+    - '**/Gemfile'
+    - '**/Guardfile'
+    - 'webpack/**/*'
+  DisplayStyleGuide: true
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+Rails:
+  Enabled: true
+Metrics/LineLength:
+  Exclude:
+    - 'lib/capistrano/**/**/*'
+  Max: 150
+Metrics/MethodLength:
+  Max: 25
+# https://github.com/bbatsov/rubocop/issues/1633
+Rails/InverseOf:
+  Enabled: false
+Layout/MultilineOperationIndentation:
+  Enabled: false
+Layout/IndentHash:
+  EnforcedStyle: consistent
+Rails/ActiveRecordAliases:
+  Enabled: false
+Layout/IndentArray:
+  EnforcedStyle: consistent
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/**/*'
+Naming/PredicateName:
+  Exclude:
+    - 'app/services/yum/text_parser.rb'
+Rails/OutputSafety:
+  Enabled: false
+Metrics/ModuleLength:
+  Exclude:
+    - 'app/helpers/records_helper.rb'
+    - 'spec/**/*'
+Rails/SkipsModelValidations:
+  Enabled: false
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - aws_staging
+    - development
+    - test
+    - aws_uat
