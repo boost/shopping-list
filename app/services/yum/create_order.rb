@@ -31,7 +31,7 @@ module Yum
                ShoppingList.where(primary: true)
              end
 
-      (list.presence || ShoppingList.where(name: 'default list')).first
+      list.presence || ShoppingList.first
     end
 
     def message_for(order)
