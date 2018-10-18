@@ -10,12 +10,12 @@
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
+  host: <%= ENV["MYSQL_HOST"] %>
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: <%= ENV['SHOPPING_LIST_DATABASE_PASSWORD'] %>
-  socket: /tmp/mysql.sock
+  password: <%= ENV['MYSQL_PASSWORD'] %>
 
 development:
   <<: *default
@@ -27,6 +27,17 @@ development:
 test:
   <<: *default
   database: shopping-list_test
+
+staging:
+  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV["MYSQL_USERNAME"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] %>
+  port: <%= ENV['MYSQL_PORT'] %>
+  database: shopping-list_staging
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -51,4 +62,4 @@ production:
   <<: *default
   database: shopping-list_production
   username: shopping-list
-  password: <%= ENV['SHOPPING-LIST_DATABASE_PASSWORD'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
