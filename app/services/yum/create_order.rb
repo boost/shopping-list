@@ -26,9 +26,9 @@ module Yum
 
     def get_shopping_list(name)
       list = if name
-               ShoppingList.where(name: name.downcase)
+               ShoppingList.find_by(name: name.downcase)
              else
-               ShoppingList.where(primary: true)
+               ShoppingList.primary
              end
 
       list.presence || ShoppingList.first
