@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root 'shopping_lists#index'
 
   resources :shopping_lists do
+    put :make_primary
+
     resources :items do
       put :toggle_checked
       put :increment_quantity
