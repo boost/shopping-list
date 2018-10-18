@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class ItemsController < ApplicationController
   def create
     @shopping_list = ShoppingList.find(params[:shopping_list_id])
     @item = @shopping_list.items.create(item_params)
 
-    flash[:item_notice] = @item.errors.full_messages if @item.errors.count > 0
+    flash[:item_notice] = @item.errors.full_messages if @item.errors.count.positive?
 
     redirect_to shopping_list_path(@shopping_list)
   end

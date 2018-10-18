@@ -17,7 +17,7 @@ module Yum
     end
 
     def command?
-      return unless COMMANDS.keys.include? first_word.to_sym
+      return unless COMMANDS.key? first_word.to_sym
 
       @command = first_word
       true
@@ -27,7 +27,7 @@ module Yum
       matches = first_word.scan(/^#[a-zA-z.0-9]*/)
       return if matches.empty?
 
-      @shopping_list = matches.first.gsub('#', '').gsub('_', ' ')
+      @shopping_list = matches.first.delete('#', '').tr('_', ' ')
       true
     end
 
@@ -35,7 +35,7 @@ module Yum
       matches = first_word.scan(/^@[a-zA-z.0-9]*/)
       return if matches.empty?
 
-      @user = matches.first.gsub('@', '')
+      @user = matches.first.delete('@', '')
       true
     end
   end

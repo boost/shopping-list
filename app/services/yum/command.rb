@@ -35,9 +35,9 @@ module Yum
       shopping_lists = ShoppingList.all
 
       if shopping_lists.empty?
-        { text: "There are no shopping lists created. Scarmble and create some" }
+        { text: 'There are no shopping lists created. Scarmble and create some' }
       else
-        { text: "Available shopping lists",
+        { text: 'Available shopping lists',
           attachments: shopping_lists.map { |list| { text: "#{list.hash_tag}#{' (default)' if list.primary}" } } }
       end
     end
