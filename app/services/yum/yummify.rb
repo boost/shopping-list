@@ -21,7 +21,7 @@ module Yum
     def execute_action
       return Command.new(@text.command, @user, @text.text).call if @text.command
 
-      attributes = { ordered_for: ordered_for_attribute,
+      attributes = { ordered_for: @text.user || @user,
                      ordered_by: @user,
                      name: @text.text,
                      quantity: @text.quantity,
@@ -29,19 +29,5 @@ module Yum
 
       CreateOrder.new(attributes).call
     end
-
-    # def shopping_list_attribute
-    #   return @text.shopping_list if @text.shopping_list?
-    # end
-
-    def ordered_for_attribute
-      @text.user || @user
-    end
-
-    # def name_attribute
-    #   return @text.non_first_words if @text.has_user? || @text.shopping_list?
-
-    #   @text.text
-    # end
   end
 end
