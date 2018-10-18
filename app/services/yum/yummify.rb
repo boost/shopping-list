@@ -19,28 +19,29 @@ module Yum
     private
 
     def execute_action
-      return Command.new(@text.command, @user, @text.text).call if @text.command?
+      return Command.new(@text.command, @user, @text.text).call if @text.command
 
       attributes = { ordered_for: ordered_for_attribute,
                      ordered_by: @user,
-                     name: name_attribute,
-                     shopping_list: shopping_list_attribute }
+                     name: @text.text,
+                     quantity: @text.quantity,
+                     shopping_list: @text.shopping_list }
 
       CreateOrder.new(attributes).call
     end
 
-    def shopping_list_attribute
-      return @text.shopping_list if @text.shopping_list?
-    end
+    # def shopping_list_attribute
+    #   return @text.shopping_list if @text.shopping_list?
+    # end
 
     def ordered_for_attribute
-      @text.has_user? ? @text.user : @user
+      @text.user || @user
     end
 
-    def name_attribute
-      return @text.non_first_words if @text.has_user? || @text.shopping_list?
+    # def name_attribute
+    #   return @text.non_first_words if @text.has_user? || @text.shopping_list?
 
-      @text.text
-    end
+    #   @text.text
+    # end
   end
 end
