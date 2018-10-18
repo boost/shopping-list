@@ -6,7 +6,7 @@ module Slack
     skip_before_action :verify_authenticity_token
 
     def create
-      Yum::Yummify.new(order_params).call
+      ExecuteSlackRequestJob.perform_later(order_params.to_hash)
 
       head :ok
     end
