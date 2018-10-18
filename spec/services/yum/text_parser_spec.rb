@@ -5,9 +5,6 @@ RSpec.describe Yum::TextParser, type: :service do
     let(:subject) { Yum::TextParser.new('bat food') }
 
     it 'has full input as the text' do
-    end
-
-    it 'has no user' do
       expect(subject.text).to eq 'bat food'
     end
 
@@ -27,7 +24,7 @@ RSpec.describe Yum::TextParser, type: :service do
   context 'when the text has a user' do
     let(:subject) { Yum::TextParser.new('@batman bat food') }
 
-    it 'has full input as the text' do
+    it 'have an order text' do
       expect(subject.text).to eq 'bat food'
     end
 
@@ -35,7 +32,7 @@ RSpec.describe Yum::TextParser, type: :service do
       expect(subject.shopping_list).to be nil
     end
 
-    it 'has user' do
+    it 'have a user' do
       expect(subject.user).to eq 'batman'
     end
 
@@ -47,7 +44,7 @@ RSpec.describe Yum::TextParser, type: :service do
   context 'when the text has a command' do
     let(:subject) { Yum::TextParser.new('?') }
 
-    it 'has command' do
+    it 'have a command' do
       expect(subject.command).to eq '?'
     end
   end
@@ -55,15 +52,15 @@ RSpec.describe Yum::TextParser, type: :service do
   context 'when the text has everything' do
     let(:subject) { Yum::TextParser.new('#petfood @batman bat food') }
 
-    it 'has full input as the text' do
+    it 'have order text' do
       expect(subject.text).to eq 'bat food'
     end
 
-    it 'has no shopping list' do
+    it 'have a shopping list' do
       expect(subject.shopping_list).to eq 'petfood'
     end
 
-    it 'has user' do
+    it 'have a user' do
       expect(subject.user).to eq 'batman'
     end
   end
