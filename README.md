@@ -44,6 +44,3 @@ bundle exec rspec
 ### ToDos
 
 - [SLACK] Make slack request execution a delayed job and respond to slack right away
-- [SLACK] Send number of items through slack text
-- [SEED] Dont need a shopping list named 'default list'. The idea of having a primary is to set a default shopping list.
-         Cleanup the seeding with `#lunch` as the primary shopping list.

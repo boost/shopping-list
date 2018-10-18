@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShoppingList < ApplicationRecord
   has_many :items, dependent: :destroy
 
@@ -6,7 +8,7 @@ class ShoppingList < ApplicationRecord
   before_save :downcase_name
 
   def self.primary
-    ShoppingList.where(primary: true).first
+    find_by(primary: true)
   end
 
   def downcase_name
@@ -14,6 +16,6 @@ class ShoppingList < ApplicationRecord
   end
 
   def hash_tag
-    '#' + name.gsub(' ', '_')
+    '#' + name.tr(' ', '_')
   end
 end

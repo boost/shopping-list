@@ -1,2 +1,3 @@
-class Category < ApplicationRecord
-end
+# frozen_string_literal: true
+
+class Category < ApplicationRecord; end

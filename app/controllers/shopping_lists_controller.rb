@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ShoppingListsController < ApplicationController
   def index
     @shopping_lists = ShoppingList.all
@@ -31,7 +33,7 @@ class ShoppingListsController < ApplicationController
     if @shopping_list.save
       redirect_to @shopping_list
     else
-      flash[:notice] = @shopping_list.errors.full_messages if @shopping_list.errors.count > 0
+      flash[:notice] = @shopping_list.errors.full_messages if @shopping_list.errors.count.positive?
 
       redirect_to shopping_lists_path
     end
@@ -42,7 +44,7 @@ class ShoppingListsController < ApplicationController
     @shopping_list.update(shopping_list_params)
     @shopping_list.save
 
-    flash[:list_notice] = @shopping_list.errors.full_messages if @shopping_list.errors.count > 0
+    flash[:list_notice] = @shopping_list.errors.full_messages if @shopping_list.errors.count.positive?
     redirect_back(fallback_location: root_path)
   end
 
