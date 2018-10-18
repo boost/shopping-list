@@ -38,6 +38,6 @@ item_categories.each do |category|
   Category.create(name: category)
 end
 
-ShoppingList.create(name: 'Default list', primary: true)
-ShoppingList.create(name: 'lunch')
+ShoppingList.create(name: 'lunch', primary: true)
 ShoppingList.create(name: 'grocery')
+ShoppingList.create(name: 'books')
