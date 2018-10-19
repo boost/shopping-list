@@ -1,0 +1,13 @@
+<%= content_tag :li, class: 'row' do %>
+  <%= form_with(model: [@shopping_list, @shopping_list.items.build], local: true) do |form| %>
+    <%= hidden_field(:item, :name, value: item.name) %>
+    <%= hidden_field(:item, :category_id, value: item.category.id) %>
+     <div class="column small-7 item-name"><%= item.name %></div>
+    <div class="column small-2">
+      <%= form.number_field :quantity, value: item.quantity %>
+    </div>
+    <div class="columns small-3">
+      <%= form.submit 'Add to list', class: 'button tiny' %>
+    </div>
+  <% end %>
+<% end %>

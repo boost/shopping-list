@@ -44,6 +44,19 @@
   <%= render 'errors', errors: flash[:item_notice] %>
 <% end %>
 
+<div id="recent-items">
+  <% if @recent_items.empty? %>
+    <p>No recently added items available.</p>
+  <% else %>
+    <h4>Recently added items</h4>
+    <ul>
+      <% @recent_items.each do |i| %>
+        <%= render 'shopping_lists/recently_added_item', item: i %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
 <%= link_to shopping_lists_path, class: 'button' do %>
   Home
   <i class="icon-right fi-home"></i>

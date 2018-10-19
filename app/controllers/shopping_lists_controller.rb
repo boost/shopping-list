@@ -8,6 +8,9 @@ class ShoppingListsController < ApplicationController
   def show
     @shopping_list = ShoppingList.find(params[:id])
     @categories = Category.all
+
+    current_item_names = @shopping_list.items.map(&:name)
+    @recent_items = Item.where.not(name: current_item_names).order(id: :desc).limit(5)
   end
 
   def new
