@@ -47,9 +47,15 @@ module Yum
       if @shopping_list.items.empty?
         { text: "There are no orders in #{@shopping_list.name}" }
       else
-        { text: "Orders in #{@shopping_list.name}. shopping.cloud.boost.co.nz/shopping_lists/#{@shopping_list.id}",
+        { text: "#{@shopping_list.items.count} orders in #{@shopping_list.name}. shopping.cloud.boost.co.nz/shopping_lists/#{@shopping_list.id}",
           attachments: @shopping_list.items.map { |item| { text: "#{item.ordered_for}: #{item.name}" } } }
       end
+    end
+
+    def flush
+      @shopping_list.items.delete_all
+
+      { text: "All orders deleted from #{@shopping_list.name}" }
     end
 
     def delete
