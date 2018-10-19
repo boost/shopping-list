@@ -72,7 +72,7 @@ module Yum
     end
 
     def help
-      extra_helpers = [{ text: '/yum @<username> <order name>. will let you make an order for another person. Dont type in the arrows pls :D' },
+      extra_helpers = [{ text: "/yum @<username> <order name>. will let you make an order for another person. Don't type in the angle brackets pls :D" },
                        { text: '/yum #<shopping list name> <order name>. will make an order for you in that shopping list' }]
 
       { text: "/yum <any text>. will make an order for you in the default shopping list.\n /yum <command>",
