@@ -25,16 +25,13 @@
 
 <%= form_with(model: [ @shopping_list, @shopping_list.items.build ], local: true) do |form| %>
   <div class="row">
-    <div class="columns small-9 large-4">
+    <div class="columns small-6">
       <%= form.text_field :name, placeholder: :name %>
     </div>
-    <div class="columns small-3 large-2">
+    <div class="columns small-2">
       <%= form.number_field :quantity, value: 1 %>
     </div>
-    <div class="columns small-6 large-3">
-      <%= form.select(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] })) %>
-    </div>
-    <div class="columns small-6 large-3">
+    <div class="columns small-4">
       <%= form.submit 'Add item', class: 'button small' %>
     </div>
   </div>

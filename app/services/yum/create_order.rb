@@ -16,8 +16,7 @@ module Yum
       order = @shopping_list.items.create(name: @name,
                                           quantity: @quantity,
                                           ordered_by: @ordered_by,
-                                          ordered_for: @ordered_for,
-                                          category_id: 25) # Hardcoding the 'Misc' category ID for the moment
+                                          ordered_for: @ordered_for)
 
       message = order ? message_for(order) : 'Something went wrong. Throw something soft at Eddie'
 
