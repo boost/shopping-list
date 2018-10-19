@@ -2,12 +2,13 @@
 
 module Yum
   class Command
-    attr_reader :command, :user, :text
+    attr_reader :command, :user, :text, :shopping_list
 
-    def initialize(command, user, text)
+    def initialize(command, user, text, shopping_list = nil)
       @command = command
       @user = user
       @text = text
+      @shopping_list = shopping_list ? ShoppingList.find_by(name: shopping_list.downcase) : ShoppingList.primary
     end
 
     def call
@@ -43,18 +44,29 @@ module Yum
     end
 
     def orders
-      primary_list = ShoppingList.primary
-
-      if primary_list.items.empty?
-        { text: "There are no orders for today in #{primary_list.name}" }
+      if @shopping_list.items.empty?
+        { text: "There are no orders in #{@shopping_list.name}" }
       else
-        { text: "Orders in #{primary_list.name}. slack-yum.herokuapp.com",
-          attachments: primary_list.items.map { |item| { text: "#{item.ordered_for}: #{item.name}" } } }
+        { text: "Orders in #{@shopping_list.name}. shopping.cloud.boost.co.nz/shopping_lists/#{@shopping_list.id}",
+          attachments: @shopping_list.items.map { |item| { text: "#{item.ordered_for}: #{item.name}" } } }
+      end
+    end
+
+    def delete
+      item = @shopping_list.items.where(ordered_by: @user).last
+
+      if item
+        item.destroy
+
+        { text: "#{item.name} has been deleted from #{@shopping_list.name}" }
+      else
+
+        { text: "There are no orders in #{@shopping_list.name} to delete" }
       end
     end
 
     def help
-      extra_helpers = [{ text: '/yum @<username> <order name>. will let you make an order for another person' },
+      extra_helpers = [{ text: '/yum @<username> <order name>. will let you make an order for another person. Dont type in the arrows pls :D' },
                        { text: '/yum #<shopping list name> <order name>. will make an order for you in that shopping list' }]
 
       { text: "/yum <any text>. will make an order for you in the default shopping list.\n /yum <command>",
