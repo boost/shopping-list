@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ShoppingListsController < ApplicationController
+  http_basic_authenticate_with name: 'boost', password: 'vapour12' if Rails.env.production?
+
   def index
     @shopping_lists = ShoppingList.all
   end

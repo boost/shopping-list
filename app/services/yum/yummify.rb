@@ -20,7 +20,7 @@ module Yum
     private
 
     def execute_action
-      return Command.new(@text.command, @user, @text.text).call if @text.command
+      return Command.new(@text.command, @user, @text.text, @text.shopping_list).call if @text.command
 
       attributes = { ordered_for: @text.user || @user,
                      ordered_by: @user,

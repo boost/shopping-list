@@ -11,7 +11,10 @@ namespace :slack do
     puts 'Enter slack message for /yum'
     text = STDIN.gets.chomp
 
-    RestClient::Request.execute(method: :post, url: 'http://localhost:3000/slack/orders',
+    url = 'https://shopping.cloud.boost.co.nz/slack/orders'
+    # url = 'http://localhost:3000/slack/orders'
+
+    RestClient::Request.execute(method: :post, url: url,
                                 payload: { user_name: user_name, text: text, response_url: nil })
   end
 end
