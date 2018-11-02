@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   namespace :slack do
     resources :orders, only: [:create]
   end
+
+  resources :welcome_message, only: :index
 end
