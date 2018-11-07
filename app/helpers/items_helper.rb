@@ -6,8 +6,4 @@ module ItemsHelper
 
     'row' + checked
   end
-
-  def category_name(item)
-    item.category ? item.category.name : 'unknown'
-  end
 end

@@ -9,7 +9,6 @@ class ShoppingListsController < ApplicationController
 
   def show
     @shopping_list = ShoppingList.find(params[:id])
-    @categories = Category.all
   end
 
   def new

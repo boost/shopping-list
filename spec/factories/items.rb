@@ -4,6 +4,5 @@ FactoryBot.define do
     quantity { 2 }
 
     association :shopping_list
-    association :category
   end
 end
