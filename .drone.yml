@@ -6,8 +6,8 @@ pipeline:
     commands:
       - docker --tls=false ps
 
-services:
-  docker:
-    image: docker:dind
-    command: [ "--storage-driver=vfs", "--tls=false" ]
-    privileged: true
+# services:
+#   docker:
+#     image: docker:dind
+#     command: [ "--storage-driver=vfs", "--tls=false" ]
+#     privileged: true
