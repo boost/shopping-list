@@ -2,7 +2,7 @@ pipeline:
   build:
     image: docker
     environment:
-      - DOCKER_HOST=tcp://localhost:2375
+      - DOCKER_HOST=tcp://drone-drone-dind:2375
     commands:
       - docker --tls=false ps
 
