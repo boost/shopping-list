@@ -2,12 +2,12 @@ pipeline:
   build:
     image: docker
     environment:
-      - DOCKER_HOST=tcp://drone-drone-dind:2375
+      - DOCKER_HOST=tcp://docker:2375
     commands:
       - docker --tls=false ps
 
-# services:
-#   docker:
-#     image: docker:dind
-#     command: [ "--storage-driver=vfs", "--tls=false" ]
-#     privileged: true
+services:
+  docker:
+    image: docker:dind
+    command: [ "--storage-driver=vfs", "--tls=false" ]
+    # privileged: true
