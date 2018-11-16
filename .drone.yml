@@ -1,13 +1,20 @@
 pipeline:
-  build:
-    image: ruby
-    # environment:
-    #   - DOCKER_HOST=tcp://docker:2375
-    commands:
-      - echo "Hello"
+  # build:
+  #   image: ruby:2.5.2
+  #   # environment:
+  #   #   - DOCKER_HOST=tcp://docker:2375
+  #   commands:
+  #     - echo "Hello"
 
 # services:
 #   docker:
 #     image: docker:dind
 #     command: [ "--storage-driver=vfs", "--tls=false" ]
 #     # privileged: true
+
+  ecr:
+    image: plugins/ecr
+    access_key: AKIAJZJLGZ4DN6SE4GVA
+    secret_key: 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
+    repo: 581987047035.dkr.ecr.ap-southeast-2.amazonaws.com/shopping
+    registry: 581987047035.dkr.ecr.ap-southeast-2.amazonaws.com
