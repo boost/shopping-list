@@ -5,5 +5,5 @@ pipeline:
     secret_key: d1kT1g2/pUUqzZQALtFgjingac5awFNCD2qEv3Rv
     repo: shopping
     registry: 581987047035.dkr.ecr.ap-southeast-2.amazonaws.com
-    tags: ${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:8} | tr "/" -
+    tags: ${DRONE_COMMIT_SHA:0:8}
     region: ap-southeast-2
