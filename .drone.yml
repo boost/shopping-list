@@ -1,10 +1,10 @@
 pipeline:
   build:
     image: docker
-    # environment:
+    environment:
       # - DOCKER_HOST=tcp://docker:2375
+      - DEBUG=*
     commands:
-      - docker --tls=false ps
 
 # services:
 #   docker:
