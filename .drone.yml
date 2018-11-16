@@ -27,6 +27,9 @@ pipeline:
 
   deploy:
     image: quay.io/honestbee/drone-kubernetes
+    kubernetes_server: ${KUBERNETES_SERVER}
+    kubernetes_cert: ${KUBERNETES_CERT}
+    kubernetes_token: ${KUBERNETES_TOKEN}
     deployment: shopping
     repo: shopping
     container: shopping
