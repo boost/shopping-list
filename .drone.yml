@@ -16,7 +16,7 @@ pipeline:
         target: aws_access_key_id
       - name: secret_key
         target: aws_secret_access_key
-    command: 
+    commands: 
       - echo $AWS_ACCESS_KEY_ID
 
   ecr:
