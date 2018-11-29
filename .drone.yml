@@ -10,7 +10,7 @@ pipeline:
       - /tmp/cache:/cache
 
   test_secrets:
-    image: ruby
+    image: golang
     secrets: 
       - name: access_key
         target: aws_access_key_id
@@ -18,7 +18,7 @@ pipeline:
         target: aws_secret_access_key
     command: 
       - echo $AWS_ACCESS_KEY_ID
-      
+
   ecr:
     image: plugins/ecr
     repo: shopping
