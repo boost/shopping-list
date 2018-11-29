@@ -4,20 +4,8 @@ pipeline:
     restore: true
     mount:
       - /drone/docker
-      - ./public/assets
-      - /usr/local/bundle
     volumes:
       - /tmp/cache:/cache
-
-  test_secrets:
-    image: golang
-    secrets: 
-      - source: access_key
-        target: aws_access_key_id
-      - source: secret_key
-        target: aws_secret_access_key
-    commands: 
-      - echo $AWS_ACCESS_KEY_ID
 
   ecr:
     image: plugins/ecr
@@ -37,8 +25,6 @@ pipeline:
     rebuild: true
     mount:
       - /drone/docker
-      - ./public/assets
-      - /usr/local/bundle
     # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/cache:/cache
