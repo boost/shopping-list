@@ -15,9 +15,9 @@ pipeline:
     storage_path: /drone/docker
     secrets: 
       - name: access_key
-        target: ECR_ACCESS_KEY
+        target: aws_access_key_id
       - name: secret_key
-        target: ECR_SECRET_KEY
+        target: aws_secret_access_key
 
   rebuild-cache:
     image: drillster/drone-volume-cache
