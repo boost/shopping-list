@@ -23,3 +23,14 @@ pipeline:
     # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/cache:/cache
+
+  deploy:
+    image: quay.io/honestbee/drone-kubernetes
+    kubernetes_server: ${KUBERNETES_SERVER}
+    kubernetes_cert: ${KUBERNETES_CERT}
+    kubernetes_token: ${KUBERNETES_TOKEN}
+    deployment: shopping
+    repo: shopping
+    container: shopping
+    tag:
+      - ${DRONE_COMMIT_SHA:0:8}
