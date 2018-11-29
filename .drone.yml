@@ -13,7 +13,11 @@ pipeline:
     tags: ${DRONE_COMMIT_SHA:0:8}
     region: ap-southeast-2
     storage_path: /drone/docker
-    secrets: [ access_key, secret_key ]
+    secrets: 
+      - name: access_key
+        target: ECR_ACCESS_KEY
+      - name: secret_key
+        target: ECR_SECRET_KEY
 
   rebuild-cache:
     image: drillster/drone-volume-cache
@@ -23,14 +27,3 @@ pipeline:
     # Mount the cache volume, needs "Trusted"
     volumes:
       - /tmp/cache:/cache
-
-  deploy:
-    image: quay.io/honestbee/drone-kubernetes
-    kubernetes_server: ${KUBERNETES_SERVER}
-    kubernetes_cert: ${KUBERNETES_CERT}
-    kubernetes_token: ${KUBERNETES_TOKEN}
-    deployment: shopping
-    repo: shopping
-    container: shopping
-    tag:
-      - ${DRONE_COMMIT_SHA:0:8}
