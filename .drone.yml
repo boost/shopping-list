@@ -10,7 +10,7 @@ pipeline:
   generate-tag-name:
     image: golang
     commands:
-      - echo $DRONE_BRANCH-${DRONE_COMMIT_SHA:0:8} | sed 's:/:-:' | tee .tags
+      - echo $DRONE_BRANCH-${DRONE_COMMIT_SHA:0:7} | sed 's:/:-:' | tee .tags
 
   ecr:
     image: plugins/ecr
