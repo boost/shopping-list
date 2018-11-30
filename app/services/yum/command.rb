@@ -74,7 +74,7 @@ module Yum
     def welcome
       welcome = WelcomMessage.first
 
-      { text: "MESSAGE: #{welcome.message}, CLIENT: #{welcome.client}, COLOUR: #{welcome.colour}" }
+      { text: "MESSAGE: #{welcome.message}, CLIENT: #{welcome.client}, COLOUR: #{welcome.colour}, THEME: #{welcome.theme}" }
     end
 
     def welcomeMessage
