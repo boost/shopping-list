@@ -1,0 +1,4 @@
+---
+app_name: shopping
+ecr_repo_name: shopping
+deployment_file_path: values.yaml
