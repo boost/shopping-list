@@ -9,6 +9,7 @@ module Yum
                welcomeMessage: 'Sets the welcome message',
                welcomeClient: 'Sets the client name for welcome message',
                welcomeColour: 'Sets the background colour for welcome message',
+               welcomeTheme: 'Sets the theme of the template',
                '?': 'Will respond with your last order',
                help: 'Returns all commands available for yum' }.freeze
 end

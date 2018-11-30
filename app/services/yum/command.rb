@@ -98,6 +98,13 @@ module Yum
       welcome_respose_for(welcome)
     end
 
+    def welcomeTheme
+      welcome = WelcomMessage.first
+      welcome.update(theme: @text)
+
+      welcome_respose_for(welcome)
+    end
+
     def welcome_respose_for(message)
       { text: "MESSAGE: #{message.message}, CLIENT: #{message.client}, COLOUR: #{message.colour}" }
     end
