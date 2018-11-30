@@ -1,0 +1,34 @@
+pipeline:
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount:
+      - /drone/docker
+    volumes:
+      - /tmp/cache:/cache
+
+  generate-tag-name:
+    image: golang
+    commands:
+      - echo $DRONE_BRANCH-${DRONE_COMMIT_SHA:0:7} | sed 's:/:-:' | tee .tags
+
+  ecr:
+    image: plugins/ecr
+    repo: shopping
+    registry: 581987047035.dkr.ecr.ap-southeast-2.amazonaws.com
+    region: ap-southeast-2
+    storage_path: /drone/docker
+    secrets: 
+      - source: access_key
+        target: aws_access_key_id
+      - source: secret_key
+        target: aws_secret_access_key
+
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount:
+      - /drone/docker
+    # Mount the cache volume, needs "Trusted"
+    volumes:
+      - /tmp/cache:/cache
