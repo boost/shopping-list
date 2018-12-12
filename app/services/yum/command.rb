@@ -71,6 +71,44 @@ module Yum
       end
     end
 
+    def welcome
+      welcome = WelcomMessage.first
+
+      { text: "MESSAGE: #{welcome.message}, CLIENT: #{welcome.client}, COLOUR: #{welcome.colour}, THEME: #{welcome.theme}" }
+    end
+
+    def welcomeMessage
+      welcome = WelcomMessage.first
+      welcome.update(message: @text)
+
+      welcome_respose_for(welcome)
+    end
+
+    def welcomeClient
+      welcome = WelcomMessage.first
+      welcome.update(client: @text)
+
+      welcome_respose_for(welcome)
+    end
+
+    def welcomeColour
+      welcome = WelcomMessage.first
+      welcome.update(colour: @text)
+
+      welcome_respose_for(welcome)
+    end
+
+    def welcomeTheme
+      welcome = WelcomMessage.first
+      welcome.update(theme: @text)
+
+      welcome_respose_for(welcome)
+    end
+
+    def welcome_respose_for(message)
+      { text: "MESSAGE: #{message.message}, CLIENT: #{message.client}, COLOUR: #{message.colour}" }
+    end
+
     def help
       extra_helpers = [{ text: "/yum @<username> <order name>. will let you make an order for another person. Don't type in the angle brackets pls :D" },
                        { text: '/yum #<shopping list name> <order name>. will make an order for you in that shopping list' }]
