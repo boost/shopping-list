@@ -8,9 +8,29 @@ pipeline:
       - /tmp/cache:/cache
 
   generate-tag-name:
-    image: golang
+    image: alpine
     commands:
       - echo $DRONE_BRANCH-${DRONE_COMMIT_SHA:0:7} | sed 's:/:-:' | tee .tags
+
+  restore:
+    image: plugins/s3-cache
+    settings:
+      pull: true
+      endpoint: boost-drone-cache
+      restore: true
+      access_key:
+        from_secret: aws_access_key_id
+      secret_key:
+        from_secret: aws_secret_access_key
+
+  # precompile-assets:
+  #   image: alpine
+  #   commands:
+  #     -
+
+      # pull assets from the cache
+      # precompile assets
+      # push assets to cache
 
   ecr:
     image: plugins/ecr
@@ -18,7 +38,7 @@ pipeline:
     registry: 581987047035.dkr.ecr.ap-southeast-2.amazonaws.com
     region: ap-southeast-2
     storage_path: /drone/docker
-    secrets: 
+    secrets:
       - source: access_key
         target: aws_access_key_id
       - source: secret_key
