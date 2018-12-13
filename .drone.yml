@@ -16,11 +16,17 @@ pipeline:
     image: plugins/s3-cache
     pull: true
     restore: true
-    access_key:
-      from_secret: aws_access_key_id
-    secret_key:
-      from_secret: aws_secret_access_key
+    secrets:
+      - source: access_key
+        target: aws_access_key_id
+      - source: secret_key
+        target: aws_secret_access_key
 
+  # access_key:
+  #   from_secret: aws_access_key_id
+  # secret_key:
+  #   from_secret: aws_secret_access_key
+  #
   # precompile-assets:
   #   image: alpine
   #   commands:
