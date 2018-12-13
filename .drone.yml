@@ -14,14 +14,13 @@ pipeline:
 
   restore:
     image: plugins/s3-cache
-    settings:
-      pull: true
-      endpoint: boost-drone-cache
-      restore: true
-      access_key:
-        from_secret: aws_access_key_id
-      secret_key:
-        from_secret: aws_secret_access_key
+    pull: true
+    endpoint: boost-drone-cache
+    restore: true
+    access_key:
+      from_secret: aws_access_key_id
+    secret_key:
+      from_secret: aws_secret_access_key
 
   # precompile-assets:
   #   image: alpine
