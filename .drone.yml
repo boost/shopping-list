@@ -15,7 +15,6 @@ pipeline:
   restore:
     image: plugins/s3-cache
     pull: true
-    endpoint: boost-drone-cache
     restore: true
     access_key:
       from_secret: aws_access_key_id
