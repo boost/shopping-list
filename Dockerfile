@@ -32,9 +32,9 @@ COPY . .
 RUN aws s3api put-object --bucket boost-drone-cache --key $PROJECT_NAME
 
 # Fetch cached content from s3
-RUN aws s3 cp s3://boost-drone-cache/$PROJECT_NAME/cache_assets.tar.gz .; exit 0
-RUN aws s3 cp s3://boost-drone-cache/$PROJECT_NAME/public_assets.tar.gz .; exit 0
-RUN aws s3 cp s3://boost-drone-cache/$PROJECT_NAME/vendor_cache.tar.gz .; exit 0
+RUN aws s3 cp s3://boost-drone-cache/$PROJECT_NAME/cache_assets.tar.gz . --quiet; exit 0
+RUN aws s3 cp s3://boost-drone-cache/$PROJECT_NAME/public_assets.tar.gz . --quiet; exit 0
+RUN aws s3 cp s3://boost-drone-cache/$PROJECT_NAME/vendor_cache.tar.gz . --quiet; exit 0
 
 # Untar fetched dependencies
 RUN tar -xzf cache_assets.tar.gz tmp/cache/; exit 0
@@ -57,9 +57,9 @@ RUN tar -czf vendor_cache.tar.gz vendor/cache
 
 # Push assets to S3
 
-RUN aws s3 cp cache_assets.tar.gz s3://boost-drone-cache/$PROJECT_NAME/cache_assets.tar.gz
-RUN aws s3 cp public_assets.tar.gz s3://boost-drone-cache/$PROJECT_NAME/public_assets.tar.gz
-RUN aws s3 cp vendor_cache.tar.gz s3://boost-drone-cache/$PROJECT_NAME/vendor_cache.tar.gz
+RUN aws s3 cp cache_assets.tar.gz s3://boost-drone-cache/$PROJECT_NAME/cache_assets.tar.gz --quiet
+RUN aws s3 cp public_assets.tar.gz s3://boost-drone-cache/$PROJECT_NAME/public_assets.tar.gz --quiet
+RUN aws s3 cp vendor_cache.tar.gz s3://boost-drone-cache/$PROJECT_NAME/vendor_cache.tar.gz --quiet
 
 RUN bundle exec rake assets:clean[1]
 
