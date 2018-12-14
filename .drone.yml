@@ -12,30 +12,6 @@ pipeline:
     commands:
       - echo $DRONE_BRANCH-${DRONE_COMMIT_SHA:0:7} | sed 's:/:-:' | tee .tags
 
-  restore:
-    image: plugins/s3-cache
-    pull: true
-    restore: true
-    secrets:
-      - source: access_key
-        target: aws_access_key_id
-      - source: secret_key
-        target: aws_secret_access_key
-
-  # access_key:
-  #   from_secret: aws_access_key_id
-  # secret_key:
-  #   from_secret: aws_secret_access_key
-  #
-  # precompile-assets:
-  #   image: alpine
-  #   commands:
-  #     -
-
-      # pull assets from the cache
-      # precompile assets
-      # push assets to cache
-
   ecr:
     image: plugins/ecr
     repo: shopping
@@ -47,6 +23,10 @@ pipeline:
         target: aws_access_key_id
       - source: secret_key
         target: aws_secret_access_key
+    build_args:
+      - RAILS_ENV=staging
+      - PROJECT_NAME=shopping-list
+    build_args_from_env: [ aws_access_key_id, aws_secret_access_key ]
 
   rebuild-cache:
     image: drillster/drone-volume-cache
